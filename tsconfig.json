@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "baseUrl": ".",
+    "outDir": "dist",
+    "moduleResolution": "Node",
+    "resolveJsonModule": false,
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "exclude": [
+      "node_modules",
+  ],
+  "include": [
+    "src/**/*"
+  ]
+}
