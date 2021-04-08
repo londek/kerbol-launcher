@@ -1,6 +1,9 @@
-# KerbolLauncher
+# Kerbol Launcher
 Whole system in one place.
-KSP Unofficial launcher for public use
+KSP Unofficial launcher for public use,
 
 ## Why?
-Many games have launcher - a place where you can manage mods, set options - however Kerbal official launcher is poor in terms what can you do, and ugly visually
+I needed something, what could manage multiple game versions, make modpacks and look good - so i came up with this.
+
+## Contributing
+Feel free to open pull request

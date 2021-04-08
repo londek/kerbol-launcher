@@ -1,0 +1,40 @@
+body {
+  margin: 0px;
+  background-color: gray;
+}
+
+#app-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+}
+
+#right-pane {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  background-color: #1d1e21;
+}
+
+#menubar {
+  height: 100px;
+  width: 100%;
+  flex: none;
+  background-color: #1a1a1c;
+}
+
+#page-contents {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.unselectable-text {
+  user-select: none;
+}
