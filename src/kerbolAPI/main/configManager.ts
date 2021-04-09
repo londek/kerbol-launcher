@@ -1,7 +1,7 @@
 import { ipcMain, app } from 'electron';
 import { Config, GameInstance } from '../../common/config';
 import { exit } from 'process';
-import IPCActions from '../actions';
+import IPCActions from '@apiActions';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -39,7 +39,7 @@ function initialize(): void {
     try {
         loadConfig();
     } catch {
-        console.error('Couldnt load config. Attempting to copy default');
+        console.error('Couldnt load config. Attempting to copy defaults');
         if(copyDefaults()) {
             try {
                 loadConfig();

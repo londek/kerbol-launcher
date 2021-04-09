@@ -1,7 +1,7 @@
 import { GameInstance } from '../../common/config';
 import * as ipcRenderer from './ipcProxy';
 
-import IPCActions from '../actions';
+import IPCActions from '@apiActions';
 
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,

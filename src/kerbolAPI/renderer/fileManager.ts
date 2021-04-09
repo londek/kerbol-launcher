@@ -1,7 +1,7 @@
 import { OpenDialogReturnValue } from 'electron';
 import * as ipcRenderer from './ipcProxy';
 
-import IPCActions from '../actions';
+import IPCActions from '@apiActions';
 
 const {
     FILE_MANAGER_OPEN_FILE_DIALOG

@@ -1,7 +1,7 @@
 import { contextBridge } from 'electron';
 
-import * as fileManager from './kerbolAPI/renderer/fileManager';
-import * as configManager from './kerbolAPI/renderer/configManager';
+import * as fileManager from '@apiRenderer/fileManager';
+import * as configManager from '@apiRenderer/configManager';
 
 const kerbolAPI = {
     fileManager,

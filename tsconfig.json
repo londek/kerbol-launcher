@@ -2,19 +2,20 @@
   "compilerOptions": {
     "allowJs": false,
     "module": "commonjs",
-    "noImplicitAny": false,
-    "sourceMap": false,
+    "target": "ES2017",
+    "noImplicitAny": true,
     "baseUrl": ".",
     "outDir": "dist",
-    "moduleResolution": "Node",
-    "resolveJsonModule": false,
+    "strict": true,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "paths": {
-      "*": ["node_modules/*"]
+      "@apiRenderer/*": [ "./src/kerbolAPI/renderer/*" ],
+      "@apiMain/*": [ "./src/kerbolAPI/main/*" ],
+      "@apiActions": [ "./src/kerbolAPI/actions" ]
     }
   },
-  "exclude": [
-      "node_modules",
-  ],
   "include": [
     "src/**/*"
   ]

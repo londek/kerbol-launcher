@@ -1,8 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
-import './kerbolAPI/main/configManager';
-import { setMainWindow } from './kerbolAPI/main/fileManager';
+// Initialize ipc handlers
+import '@apiMain/configManager';
+import { setMainWindow } from '@apiMain/fileManager';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -30,7 +31,7 @@ const createWindow = (): void => {
 
     mainWindow.loadFile(path.join(__dirname, 'frontend/app.html'));
 
-    mainWindow.on('closed',() => (mainWindow = null));
+    mainWindow.on('closed',() => (mainWindow.destroy()));
 
     if (process.env.NODE_ENV === 'production') {
         mainWindow.removeMenu();

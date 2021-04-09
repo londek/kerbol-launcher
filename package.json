@@ -5,7 +5,7 @@
   "description": "Unofficial KSP launcher",
   "main": "dist/main.js",
   "scripts": {
-    "start": "tsc && copyfiles -u 2 src/frontend/**/* dist/frontend/ && electron-forge start",
+    "start": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist && copyfiles -u 2 src/frontend/**/* dist/frontend/ && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "lint": "eslint --ext .ts ."
@@ -56,6 +56,8 @@
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.20.0",
+    "tsconfig-paths": "^3.9.0",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.0.2",
     "typescript-eslint-parser": "^22.0.0"
   }
