@@ -1,11 +1,11 @@
 import { contextBridge } from 'electron';
 
-import * as fileManager from '@apiRenderer/fileManager';
 import * as configManager from '@apiRenderer/configManager';
+import * as fileManager from '@apiRenderer/fileManager';
 
 const kerbolAPI = {
-    fileManager,
-    configManager
+    configManager,
+    fileManager
 };
 
 contextBridge.exposeInMainWorld('kerbolAPI', kerbolAPI);

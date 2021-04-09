@@ -1,9 +1,9 @@
-import { ipcMain, app } from 'electron';
-import { Config, GameInstance } from '../../common/config';
-import { exit } from 'process';
-import IPCActions from '@apiActions';
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
+import { Config, GameInstance } from 'common/config';
+import { app, ipcMain } from 'electron';
+import IPCActions from '@apiActions';
+import { exit } from 'process';
 
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,

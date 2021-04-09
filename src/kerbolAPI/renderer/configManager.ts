@@ -1,5 +1,5 @@
-import { GameInstance } from '../../common/config';
-import * as ipcRenderer from './ipcProxy';
+import * as ipcRenderer from '@apiRenderer/ipcProxy';
+import { GameInstance } from 'common/config';
 
 import IPCActions from '@apiActions';
 

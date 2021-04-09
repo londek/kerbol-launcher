@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, dialog } from 'electron';
+import { BrowserWindow, dialog, ipcMain } from 'electron';
 import IPCActions from '@apiActions';
 
 const {

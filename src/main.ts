@@ -1,5 +1,5 @@
-import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
+import { BrowserWindow, app } from 'electron';
 
 // Initialize ipc handlers
 import '@apiMain/configManager';

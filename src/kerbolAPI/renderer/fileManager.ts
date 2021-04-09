@@ -1,5 +1,5 @@
-import { OpenDialogReturnValue } from 'electron';
 import * as ipcRenderer from './ipcProxy';
+import { OpenDialogReturnValue } from 'electron';
 
 import IPCActions from '@apiActions';
 
