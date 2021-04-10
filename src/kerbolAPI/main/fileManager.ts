@@ -11,7 +11,7 @@ export function setMainWindow(mainwindow: BrowserWindow): void {
     mainWindow = mainwindow;
 }
 
-ipcMain.handle(FILE_MANAGER_OPEN_FILE_DIALOG, async (event, params) => {
+ipcMain.handle(FILE_MANAGER_OPEN_FILE_DIALOG, async (_, params) => {
     if(mainWindow === undefined || null) return console.log('Did not open file dialog, because main window is not initialized');
     
     console.log(`Received ${FILE_MANAGER_OPEN_FILE_DIALOG}`);

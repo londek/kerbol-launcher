@@ -1,11 +1,17 @@
 export interface Config {
-    instances:       GameInstance[];
-    defaultInstance: number;
+    instances:       { [key: string]: GameInstance };
+    defaultInstance: string;
 }
 
 export interface GameInstance {
-    arch: number;
-    path: string;
+    buildId: string;
+    root: string;
+    label: string;
+    distro: string;
+}
+
+export interface StoreGameInstance {
+    buildId: string;
     label: string;
     distro: string;
 }

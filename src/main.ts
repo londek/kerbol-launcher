@@ -1,14 +1,9 @@
 import * as path from 'path';
-import { BrowserWindow, app } from 'electron';
+import { app, BrowserWindow } from 'electron';
 
 // Initialize ipc handlers
 import '@apiMain/configManager';
 import { setMainWindow } from '@apiMain/fileManager';
-
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-    app.quit();
-}
 
 let mainWindow: BrowserWindow;
 

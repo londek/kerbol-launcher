@@ -1,9 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Config, GameInstance } from 'common/config';
 import { app, ipcMain } from 'electron';
-import IPCActions from '@apiActions';
+import { Config, StoreGameInstance } from 'common/config';
 import { exit } from 'process';
+import { v4 as uuidv4 } from 'uuid';
+
+import IPCActions from '@apiActions';
 
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,
@@ -20,12 +22,13 @@ function saveConfig(): void {
 
 function loadConfig(): void {
     const configContents = fs.readFileSync(path.join(app.getPath('userData'), 'config.json'), { encoding: 'utf-8' });
+    if(configContents === '') throw 'Invalid contents?';
     localConfig = JSON.parse(configContents);
 }
 
 function copyDefaults(): boolean {
     try {
-        fs.copyFileSync(path.resolve(app.getAppPath(), 'src/common/config.json'), path.join(app.getPath('userData'), 'config.json'), fs.constants.COPYFILE_EXCL);
+        fs.copyFileSync(path.resolve(app.getAppPath(), 'src/common/config.json'), path.join(app.getPath('userData'), 'config.json'), fs.constants.COPYFILE_FICLONE);
         console.log('Defaults copied successfully');
         return true;
     } catch(e) {
@@ -58,31 +61,51 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_GAME_INSTANCES, async () => {
     return localConfig.instances;
 });
   
-ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (event, instance: GameInstance) => {
+
+// TODO Add sanity checks
+ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGameInstance) => {
     console.log(`Received ${CONFIG_MANAGER_STORE_GAME_INSTANCE}`);
 
+    // Sanity checks
+    if(instance.label.length > 20) {
+        return { error: true, reason: 'Label is too long' };
+    } else if(instance.label.length < 3) {
+        return { error: true, reason: 'Label is too short' };
+    }
+
+    const parsedPath = path.parse(instance.buildId); 
+    if(parsedPath.name !== 'buildID64' &&
+       parsedPath.name !== 'buildID32' &&
+       parsedPath.name !== 'buildID') {
+        return { error: true, reason: 'buildID syntax is wrong. Open issue on Github if you think its error' };
+    }
+
     // Check for duplicates
-    for(const savedInstance of localConfig.instances) {
-        if (savedInstance.path === instance.path) {
-            return { error: true, reason: 'instance with this path already exists' };
+    for(const savedInstance in localConfig.instances) {
+        if (localConfig.instances[savedInstance].buildId === instance.buildId) {
+            return { error: true, reason: 'Instance with this path already exists' };
+        } else if(localConfig.instances[savedInstance].label === instance.label) {
+            return { error: true, reason: 'Instance with this label already exists' };
         }
     }
 
     // Check if directory is accessible, if node can read from it, if node can write to it
     try {
-        fs.accessSync(path.parse(instance.path).dir, fs.constants.R_OK | fs.constants.W_OK);
+        fs.accessSync(parsedPath.dir, fs.constants.R_OK | fs.constants.W_OK);
     } catch(e) {
         console.log(e);
-        return { error: true, reason: 'cannot access this path' };
+        return { error: true, reason: 'Cannot access this path' };
     }
     
-    localConfig.instances.push(instance);
+    const instanceId = uuidv4();
+    localConfig.instances[instanceId] = { ...instance, root: parsedPath.dir };
+    localConfig.defaultInstance = instanceId;
 
     try {
         saveConfig();
         return { error: false, reason: null };
     } catch {
-        return { error: true, reason: 'failed to save config' };
+        return { error: true, reason: 'Failed to save config' };
     }
 });
 
@@ -91,14 +114,21 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE, async () => {
     return localConfig.defaultInstance;
 });
 
-ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (event, newDefaultInstance: number) => {
+ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInstance: string) => {
     console.log(`Received ${CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE}`);
-    localConfig.defaultInstance = newDefaultInstance;
-    try {
-        saveConfig();
-        return { error: false, reason: null };
-    } catch {
-        return { error: true, reason: 'failed to save config' };
-    }
-});
 
+    // Check for match
+    for(const savedInstance in localConfig.instances) {
+        if (savedInstance === newDefaultInstance) {
+            localConfig.defaultInstance = newDefaultInstance;
+            try {
+                saveConfig();
+                return { error: false, reason: null };
+            } catch {
+                return { error: true, reason: 'Failed to save config' };
+            }
+        }
+    }
+
+    return { error: true, reason: 'ID is invalid' };
+});

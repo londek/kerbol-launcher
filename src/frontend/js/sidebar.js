@@ -8,7 +8,7 @@ export function showNoInstances() {
 }
 
 export function hideNoInstances() {
-    noInstances.style.display = 'block';
+    noInstances.style.display = 'none';
 }
 
 export function createInstance(id, distro, version) {

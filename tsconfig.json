@@ -12,6 +12,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": false,
     "removeComments": true,
+    "typeRoots": ["./node_modules/@types", "./custom_typings"],
     "paths": {
       "@apiRenderer/*": [ "./kerbolAPI/renderer/*" ],
       "@apiMain/*": [ "./kerbolAPI/main/*" ],
