@@ -1,7 +1,7 @@
-import * as ipcRenderer from '@apiRenderer/ipcProxy';
-import { GameInstance, StoreGameInstance } from 'common/config';
+import * as ipcRenderer from './ipcProxy';
+import { GameInstance, StoreGameInstance } from '../../common/config';
 
-import IPCActions from '@apiActions';
+import IPCActions from '../actions';
 
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,

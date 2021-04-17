@@ -1,26 +1,32 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2017",
-    "baseUrl": "src",
-    "outDir": "dist",
-    "allowJs": false,
-    "noImplicitAny": true,
-    "alwaysStrict": true,
-    "strict": true,
-    "sourceMap": false,
-    "moduleResolution": "node",
-    "resolveJsonModule": false,
-    "removeComments": true,
-    "typeRoots": ["./node_modules/@types", "./custom_typings"],
-    "paths": {
-      "@apiRenderer/*": [ "./kerbolAPI/renderer/*" ],
-      "@apiMain/*": [ "./kerbolAPI/main/*" ],
-      "@apiActions": [ "./kerbolAPI/actions" ],
-      "*": [ "./*" ]
-    }
-  },
-  "include": [
-    "src/**/*"
-  ]
+    "compilerOptions": {
+        "target": "ES2018",
+        "module": "CommonJS",
+        "lib": ["dom", "esnext"],
+        "declaration": true,
+        "declarationMap": true,
+        "noEmit": true,
+        "jsx": "react",
+        "strict": true,
+        "pretty": true,
+        "sourceMap": true,
+        /* Additional Checks */
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        /* Module Resolution Options */
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "allowJs": true
+    },
+    "exclude": [
+        "test",
+        "release",
+        "src/preload.dev.js",
+        "dist",
+        ".erb/dll"
+    ]
 }
