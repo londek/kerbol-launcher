@@ -23,7 +23,6 @@
         "allowJs": true
     },
     "exclude": [
-        "test",
         "release",
         "src/preload.dev.js",
         "dist",

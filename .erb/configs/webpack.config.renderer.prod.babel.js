@@ -7,9 +7,7 @@ import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import { merge } from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
-import baseConfig from './webpack.config.base';
 import CheckNodeEnv from '../scripts/CheckNodeEnv';
 import DeleteSourceMaps from '../scripts/DeleteSourceMaps';
 
@@ -18,7 +16,7 @@ DeleteSourceMaps();
 
 const devtoolsConfig = process.env.DEBUG_PROD === 'true' ? { devtool: 'source-map' } : {};
 
-export default merge(baseConfig, {
+export default {
     ...devtoolsConfig,
 
     mode: 'production',
@@ -35,6 +33,15 @@ export default merge(baseConfig, {
     },
     module: {
         rules: [
+            {
+                test: /\.[jt]sx?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: require.resolve('babel-loader'),
+                    },
+                ]
+            },
             {
                 test: /.s?css$/,
                 use: [
@@ -150,4 +157,11 @@ export default merge(baseConfig, {
             openAnalyzer: process.env.OPEN_ANALYZER === 'true',
         }),
     ],
-});
+    /**
+     * Determine the array of extensions that should be used to resolve modules.
+     */
+    resolve: {
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+        modules: [path.join(__dirname, '../src'), 'node_modules'],
+    }
+};

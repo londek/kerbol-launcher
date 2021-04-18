@@ -1,3 +1,6 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 
@@ -19,6 +22,7 @@ const createWindow = async () => {
         minWidth: 1024,
         minHeight: 576,
         center: true,
+        show: false,
         useContentSize: true,
         webPreferences: {
             nodeIntegration: false,
@@ -28,7 +32,7 @@ const createWindow = async () => {
         }
     });
 
-    mainWindow.loadURL(`file://${development ? path.join(__dirname, 'renderer/index.html') : 'null'}`);
+    mainWindow.loadURL(`file://${development ? path.join(__dirname, 'renderer/index.html') : path.join(__dirname, 'index.html')}`);
 
     mainWindow.once('ready-to-show', () => {
         if (!mainWindow) {

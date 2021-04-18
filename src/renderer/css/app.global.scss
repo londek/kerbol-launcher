@@ -1,6 +1,8 @@
+@import "colors";
+
 body {
     margin: 0px;
-    background-color: gray;
+    background-color: white;
 }
 
 #app-wrapper {
@@ -19,7 +21,7 @@ button {
     display: flex;
     flex-direction: column;
     flex: auto;
-    background-color: #1d1e21;
+    background-color: $gray;
 }
 
 #menubar {
@@ -27,7 +29,7 @@ button {
     height: 100px;
     width: 100%;
     flex: none;
-    background-color: #1a1a1c;
+    background-color: $dark;
 }
 
 #menubar > div{

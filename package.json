@@ -1,19 +1,18 @@
 {
-    "name": "electron-react-boilerplate",
-    "description": "",
+    "name": "kerbol-launcher",
+    "description": "Unofficial KSP launcher with modloader feature",
     "scripts": {
         "start": "node -r @babel/register ./.erb/scripts/CheckPortInUse.js && yarn build:preload-dev && cross-env yarn start:renderer",
         "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/BabelRegister ./src/main.dev.ts",
         "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js",
-
         "build": "rimraf dist && concurrently \"yarn build:main\" \"yarn build:renderer\" \"yarn build:preload\"",
         "build:main": "cross-env NODE_ENV=production webpack --config ./.erb/configs/webpack.config.main.prod.babel.js",
         "build:renderer": "cross-env NODE_ENV=production webpack --config ./.erb/configs/webpack.config.renderer.prod.babel.js",
         "build:preload": "cross-env NODE_ENV=production webpack --config ./.erb/configs/webpack.config.preload.prod.babel.js",
         "build:preload-dev": "cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.preload.dev.babel.js",
-
-        "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir src",
         "package": "yarn build && electron-builder build --publish never",
+        "package:dev": "yarn build && electron-builder build --dir --publish never -c.asar=false",
+        "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir src",
         "lint": "cross-env NODE_ENV=development eslint . --cache --ext .js,.jsx,.ts,.tsx",
         "postinstall": "node -r @babel/register .erb/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.babel.js && opencollective-postinstall && yarn-deduplicate yarn.lock"
     },
@@ -21,53 +20,63 @@
     "build": {
         "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
         "productName": "Kerbol Launcher",
-        "appId": "org.erb.ElectronReact",
+        "appId": "pl.londek.KerbolLauncher",
         "files": [
-        "dist/",
-        "node_modules/",
-        "renderer/app.html",
-        "package.json"
-        ],
-        "nsis": {
-        "differentialPackage": false
-        },
-        "mac": {
-        "target": "dmg",
-        "type": "distribution",
-        "hardenedRuntime": true,
-        "entitlements": "assets/entitlements.mac.plist",
-        "entitlementsInherit": "assets/entitlements.mac.plist",
-        "gatekeeperAssess": false
-        },
-        "dmg": {
-        "contents": [
             {
-            "x": 130,
-            "y": 220
+                "from": "../dist",
+                "to": ".",
+                "filter": [
+                    "**/*"
+                ]
             },
             {
-            "x": 410,
-            "y": 220,
-            "type": "link",
-            "path": "/Applications"
-            }
+                "from": "renderer",
+                "to": ".",
+                "filter": [
+                    "index.html"
+                ]
+            },
+            "package.json",
+            "../assets"
         ],
-        "writeUpdateInfo": false
+        "nsis": {
+            "differentialPackage": false
+        },
+        "mac": {
+            "target": "dmg",
+            "type": "distribution",
+            "hardenedRuntime": true,
+            "gatekeeperAssess": false
+        },
+        "dmg": {
+            "contents": [
+                {
+                    "x": 130,
+                    "y": 220
+                },
+                {
+                    "x": 410,
+                    "y": 220,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ],
+            "writeUpdateInfo": false
         },
         "win": {
-        "target": "nsis"
+            "target": "nsis"
         },
         "linux": {
-        "target": "AppImage",
-        "category": "Development"
+            "target": "AppImage",
+            "category": "Development"
         },
         "directories": {
-        "app": "src",
-        "buildResources": "assets",
-        "output": "release"
+            "app": "src",
+            "buildResources": "assets",
+            "output": "release"
         },
         "extraResources": [
-        "./assets/**"
+            "./assets/**"
         ]
     },
     "devDependencies": {
@@ -98,11 +107,10 @@
         "@teamsupercell/typings-for-css-modules-loader": "^2.4.0",
         "@testing-library/jest-dom": "^5.11.6",
         "@testing-library/react": "^11.2.2",
-        "@types/enzyme": "^3.10.5",
-        "@types/enzyme-adapter-react-16": "^1.0.6",
+        "@types/electron": "^1.6.10",
         "@types/history": "4.7.6",
         "@types/node": "14.14.10",
-        "@types/react": "^16.9.44",
+        "@types/react": "^17.0.3",
         "@types/react-dom": "^16.9.9",
         "@types/react-router-dom": "^5.1.6",
         "@types/react-test-renderer": "^16.9.3",
@@ -114,7 +122,6 @@
         "babel-loader": "^8.2.2",
         "babel-plugin-dev-expression": "^0.2.2",
         "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-        "browserslist-config-erb": "^0.0.1",
         "chalk": "^4.1.0",
         "concurrently": "^5.3.0",
         "core-js": "^3.6.5",
@@ -122,15 +129,12 @@
         "css-loader": "^5.0.1",
         "css-minimizer-webpack-plugin": "^1.1.5",
         "detect-port": "^1.3.0",
-        "electron": "^11.0.1",
+        "electron": "^12.0.4",
         "electron-builder": "^22.3.6",
         "electron-devtools-installer": "^3.1.1",
         "electron-notarize": "^1.0.0",
         "electron-react-devtools": "firejune/electron-react-devtools",
         "electron-rebuild": "^2.3.2",
-        "enzyme": "^3.11.0",
-        "enzyme-adapter-react-16": "^1.15.3",
-        "enzyme-to-json": "^3.5.0",
         "eslint": "^7.5.0",
         "eslint-config-airbnb": "^18.2.0",
         "eslint-config-airbnb-typescript": "^12.0.0",
@@ -146,9 +150,6 @@
         "eslint-plugin-react": "^7.20.6",
         "eslint-plugin-react-hooks": "^4.0.8",
         "file-loader": "^6.0.0",
-        "husky": "^4.2.5",
-        "identity-obj-proxy": "^3.0.0",
-        "lint-staged": "^10.2.11",
         "mini-css-extract-plugin": "^1.3.1",
         "node-sass": "^5.0.0",
         "opencollective-postinstall": "^2.0.3",
@@ -170,7 +171,6 @@
     "dependencies": {
         "electron-debug": "^3.1.0",
         "electron-log": "^4.2.4",
-        "history": "^5.0.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-router-dom": "^5.2.0",

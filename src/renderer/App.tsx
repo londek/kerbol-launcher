@@ -1,6 +1,6 @@
-import './css/app.global.css';
-import './css/quickstart.global.css';
-import './css/sidebar.global.css';
+import './css/app.global.scss';
+import './css/quickstart.global.scss';
+import './css/sidebar.global.scss';
 import React from 'react';
 
 export default function App(): JSX.Element {
@@ -28,9 +28,9 @@ export default function App(): JSX.Element {
             <div id="right-pane">
                 <nav id="menubar">
                     <div>
-                        <button className="active">Home</button>
-                        <button>Modpacks</button>
-                        <button>Launch params</button>
+                        <button className="active unselectable-text">Home</button>
+                        <button className='unselectable-text'>Modpacks</button>
+                        <button className='unselectable-text'>Launch params</button>
                     </div>
                 </nav>
                 <div id="page-contents"></div>

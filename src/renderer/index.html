@@ -4,7 +4,6 @@
         <!-- Metadata -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' ws://localhost:1212 http://localhost:1212 https://fonts.gstatic.com https://*.fontawesome.com https://fonts.googleapis.com https://fonts.googleapis.com">
 
         <!-- Title -->
         <title>Kerbol Launcher Beta</title>
@@ -19,7 +18,7 @@
                 if (!kerbolAPI.isDev()) {
                     const link = document.createElement('link');
                     link.rel = 'stylesheet';
-                    link.href = './dist/style.css';
+                    link.href = 'style.css';
                     // HACK: Writing the script path should be done with webpack
                     document.getElementsByTagName('head')[0].appendChild(link);
                 }
