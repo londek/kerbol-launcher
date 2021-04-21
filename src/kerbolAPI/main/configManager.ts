@@ -1,11 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { app, ipcMain } from 'electron';
-import { Config, StoreGameInstance } from 'common/config';
 import { exit } from 'process';
 import { v4 as uuidv4 } from 'uuid';
 
-import IPCActions from '@apiActions';
+import IPCActions from '../actions';
 
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,
@@ -37,7 +36,6 @@ function copyDefaults(): boolean {
     }
 }
 
-// TODO Definetely to change, now its ugly
 function initialize(): void {
     try {
         loadConfig();
@@ -60,7 +58,7 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_GAME_INSTANCES, async () => {
     console.log(`Received ${CONFIG_MANAGER_FETCH_GAME_INSTANCES}`);
     return localConfig.instances;
 });
-  
+
 
 // TODO Add sanity checks
 ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGameInstance) => {
@@ -73,10 +71,10 @@ ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGame
         return { error: true, reason: 'Label is too short' };
     }
 
-    const parsedPath = path.parse(instance.buildId); 
+    const parsedPath = path.parse(instance.buildId);
     if(parsedPath.name !== 'buildID64' &&
-       parsedPath.name !== 'buildID32' &&
-       parsedPath.name !== 'buildID') {
+        parsedPath.name !== 'buildID32' &&
+        parsedPath.name !== 'buildID') {
         return { error: true, reason: 'buildID syntax is wrong. Open issue on Github if you think its error' };
     }
 
@@ -89,14 +87,14 @@ ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGame
         }
     }
 
-    // Check if directory is accessible, if node can read from it, if node can write to it
+    // Check if directory is accessible, if node can read from it, if node can write to it and if node can execute it
     try {
-        fs.accessSync(parsedPath.dir, fs.constants.R_OK | fs.constants.W_OK);
+        fs.accessSync(parsedPath.dir, fs.constants.R_OK | fs.constants.W_OK | fs.constants.X_OK);
     } catch(e) {
         console.log(e);
         return { error: true, reason: 'Cannot access this path' };
     }
-    
+
     const instanceId = uuidv4();
     localConfig.instances[instanceId] = { ...instance, root: parsedPath.dir };
     localConfig.defaultInstance = instanceId;
