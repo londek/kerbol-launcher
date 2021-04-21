@@ -3,6 +3,7 @@ const developmentEnvironments = ['development', 'test'];
 const developmentPlugins = [require('@babel/plugin-transform-runtime')];
 
 const productionPlugins = [
+    require('@babel/plugin-transform-runtime'),
     require('babel-plugin-dev-expression'),
 
     // babel-preset-react-optimize

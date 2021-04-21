@@ -3,7 +3,6 @@ import fs from 'fs';
 import webpack from 'webpack';
 import chalk from 'chalk';
 import { spawn, execSync } from 'child_process';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CheckNodeEnv from '../scripts/CheckNodeEnv';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 

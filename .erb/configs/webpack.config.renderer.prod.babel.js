@@ -20,7 +20,6 @@ export default {
     ...devtoolsConfig,
 
     mode: 'production',
-    target: 'electron-renderer',
     entry: [
         'core-js',
         'regenerator-runtime/runtime',

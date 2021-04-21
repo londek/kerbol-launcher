@@ -3,6 +3,7 @@
     "productName": "Kerbol Launcher",
     "version": "1.0.0",
     "description": "Unofficial KSP launcher with modloader feature",
+    "author": "Londek (https://github.com/Londek)",
     "main": "./main.prod.js",
     "scripts": {
         "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
