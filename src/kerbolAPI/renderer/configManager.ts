@@ -1,5 +1,4 @@
 import * as ipcRenderer from './ipcProxy';
-import { GameInstance, StoreGameInstance } from '../../common/config';
 
 import IPCActions from '../actions';
 

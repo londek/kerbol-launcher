@@ -1,22 +1,12 @@
 import './css/app.global.scss';
-import './css/quickstart.global.scss';
-import './css/sidebar.global.scss';
 
-import Quickstart from './components/Quickstart';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
-class App extends Component<unknown, unknown> {
-    constructor(props: unknown) {
-        super(props);
-        kerbolAPI.configManager.fetchGameInstances();
-        this.state = {
-
-        };
-    }
-
-    render(): JSX.Element {
-        return (
+/*
             <div id="app-wrapper">
                 <div id="sidebar">
                     <div id="title-label">
@@ -46,9 +36,34 @@ class App extends Component<unknown, unknown> {
                         </div>
                     </nav>
                     <div id="page-contents"></div>
-                </div>
-                <Quickstart />
-            </div>
+                </div>*/
+
+interface State {
+    instances: {[key: string]: GameInstance};
+    defaultInstance: string | null;
+}
+
+class App extends Component<unknown, State> {
+    state: State = {
+        instances: {},
+        defaultInstance: null
+    }
+
+    componentDidMount(): void {
+        //kerbolAPI.configManager.fetchGameInstances().then(e => this.setState({ enableQuickstartView: Object.keys(e).length === 0 }));
+        kerbolAPI.configManager.fetchGameInstances()
+            .then(instances => this.setState({ instances }));
+
+        kerbolAPI.configManager.fetchDefaultInstance()
+            .then(defaultInstance => this.setState({ defaultInstance }));
+    }
+
+    render(): JSX.Element {
+        return (
+            <React.Fragment>
+                <Sidebar instances={this.state.instances} selectedInstance={this.state.defaultInstance} />
+                <Navbar />
+            </React.Fragment>
         );
     }
 }

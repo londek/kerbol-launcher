@@ -18,4 +18,8 @@ declare global {
         label: string;
         distro: string | null;
     }
+
+    interface ErrorableResponse {
+        error: string | null;
+    }
 }

@@ -13,17 +13,19 @@ const development = process.env.NODE_ENV === 'development' || process.env.DEBUG_
 
 let mainWindow: BrowserWindow | null = null;
 
-console.log(development ? 'Welcome from development' : 'Welcome from production');
-
 if (!development) {
     require('source-map-support').install();
 }
 
 const createWindow = async () => {
+    console.log(`Running as ${app.getName()}`);
+    console.log(`User data: ${app.getPath('userData')}`);
+    console.log(`Development? ${development}`);
+
     mainWindow = new BrowserWindow({
         title: 'Kerbol Launcher loading...',
-        width: 1024,
-        height: 576,
+        width: development ? 1512 : 1024, // Add space for devtools when in development
+        height: development ? 824 : 576, // Add space for devtools when in development,
         minWidth: 1024,
         minHeight: 576,
         center: true,
@@ -48,6 +50,7 @@ const createWindow = async () => {
         mainWindow.webContents.openDevTools();
     }
 
+    mainWindow.removeMenu();
     mainWindow.loadURL(`file://${development ? path.join(__dirname, 'renderer/index.html') : path.join(__dirname, 'index.html')}`);
 
     mainWindow.once('ready-to-show', () => {
@@ -61,6 +64,7 @@ const createWindow = async () => {
             mainWindow.focus();
         }
     });
+
     mainWindow.on('closed', () => {
         mainWindow = null;
     });

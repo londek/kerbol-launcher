@@ -1,72 +1,28 @@
 @import "colors";
 
 body {
-    margin: 0px;
-    background-color: white;
+	margin: 0;
 }
 
-#app-wrapper {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-
-button {
-    display: block;
-    cursor: pointer;
-}
-
-#right-pane {
-    display: flex;
-    flex-direction: column;
-    flex: auto;
-    background-color: $gray;
-}
-
-#menubar {
-    display: flex;
-    height: 100px;
-    width: 100%;
-    flex: none;
-    background-color: $dark;
-}
-
-#menubar > div{
-    margin: auto auto 0 0;
-}
-
-#menubar > div > button {
-    margin-left: 25px;
-    margin-right: 35px;
-    float: left;
-    height: 100px;
-    width: 150px;
-    color: white;
-    background-color: transparent;
-    border: 7px solid transparent;
-    font-family: 'Lato', sans-serif;
-    font-size: 17px;
-    font-weight: 400;
-    outline: none;
-}
-
-#menubar > div > button.active {
-    cursor: initial;
-    border-bottom-color: #56eb6a;
-}
-
-
-#menubar > div > button:hover:not(.active) {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-#page-contents {
-    flex-grow: 1;
-    height: 100%;
-    width: 100%;
+#app {
+	background-color: #1d1d1e;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
 }
 
 .unselectable-text {
     user-select: none;
+}
+
+.green-btn {
+	border: 0;
+	background-color: #37a048;
+	color: white;
+	font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+	outline: none;
+	cursor: pointer;
 }

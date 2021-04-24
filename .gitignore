@@ -32,12 +32,15 @@ node_modules
 
 # App packaged
 release
-**/*.dev.js*
-**/*.prod.js*
+src/preload.dev.js
+**/*.dev.js
+**/*.dev.js.LICENSE.txt
+**/*.dev.js.map
+**/*.prod.js
+**/*.prod.js.LICENSE.txt
+**/*.prod.js.map
 dist
 dll
-main.js
-main.js.map
 
 .idea
 npm-debug.log.*

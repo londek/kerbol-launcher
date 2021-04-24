@@ -13,21 +13,23 @@ const {
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE,
 } = IPCActions;
 
+const configPath = path.join(app.getPath('userData'), 'config.json');
 let localConfig: Config;
 
 function saveConfig(): void {
-    fs.writeFileSync(path.join(app.getPath('userData'), 'config.json'), JSON.stringify(localConfig), { encoding: 'utf-8' });
+    fs.writeFileSync(configPath, JSON.stringify(localConfig, null, 4), { encoding: 'utf-8' });
+    console.log(`Saving config on ${configPath}`);
 }
 
 function loadConfig(): void {
-    const configContents = fs.readFileSync(path.join(app.getPath('userData'), 'config.json'), { encoding: 'utf-8' });
+    const configContents = fs.readFileSync(configPath, { encoding: 'utf-8' });
     if(configContents === '') throw 'Invalid contents?';
     localConfig = JSON.parse(configContents);
 }
 
 function copyDefaults(): boolean {
     try {
-        fs.copyFileSync(path.resolve(app.getAppPath(), 'src/common/config.json'), path.join(app.getPath('userData'), 'config.json'), fs.constants.COPYFILE_FICLONE);
+        fs.copyFileSync(path.resolve(app.getAppPath(), 'src/common/config.json'), configPath, fs.constants.COPYFILE_FICLONE);
         console.log('Defaults copied successfully');
         return true;
     } catch(e) {
@@ -59,31 +61,29 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_GAME_INSTANCES, async () => {
     return localConfig.instances;
 });
 
-
-// TODO Add sanity checks
-ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGameInstance) => {
+ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGameInstance): Promise<ErrorableResponse> => {
     console.log(`Received ${CONFIG_MANAGER_STORE_GAME_INSTANCE}`);
 
     // Sanity checks
     if(instance.label.length > 20) {
-        return { error: true, reason: 'Label is too long' };
+        return { error: 'Label is too long' };
     } else if(instance.label.length < 3) {
-        return { error: true, reason: 'Label is too short' };
+        return { error: 'Label is too short' };
     }
 
     const parsedPath = path.parse(instance.buildId);
     if(parsedPath.name !== 'buildID64' &&
         parsedPath.name !== 'buildID32' &&
         parsedPath.name !== 'buildID') {
-        return { error: true, reason: 'buildID syntax is wrong. Open issue on Github if you think its error' };
+        return { error: 'buildID syntax is wrong. Open issue on Github if you think its error' };
     }
 
     // Check for duplicates
     for(const savedInstance in localConfig.instances) {
         if (localConfig.instances[savedInstance].buildId === instance.buildId) {
-            return { error: true, reason: 'Instance with this path already exists' };
+            return { error: 'Instance with this path already exists' };
         } else if(localConfig.instances[savedInstance].label === instance.label) {
-            return { error: true, reason: 'Instance with this label already exists' };
+            return { error: 'Instance with this label already exists' };
         }
     }
 
@@ -92,7 +92,7 @@ ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGame
         fs.accessSync(parsedPath.dir, fs.constants.R_OK | fs.constants.W_OK | fs.constants.X_OK);
     } catch(e) {
         console.log(e);
-        return { error: true, reason: 'Cannot access this path' };
+        return { error: 'Cannot access this path' };
     }
 
     const instanceId = uuidv4();
@@ -101,9 +101,9 @@ ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGame
 
     try {
         saveConfig();
-        return { error: false, reason: null };
+        return { error: null };
     } catch {
-        return { error: true, reason: 'Failed to save config' };
+        return { error: 'Failed to save config' };
     }
 });
 
@@ -112,7 +112,7 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE, async () => {
     return localConfig.defaultInstance;
 });
 
-ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInstance: string) => {
+ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInstance: string): Promise<ErrorableResponse> => {
     console.log(`Received ${CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE}`);
 
     // Check for match
@@ -121,12 +121,12 @@ ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInsta
             localConfig.defaultInstance = newDefaultInstance;
             try {
                 saveConfig();
-                return { error: false, reason: null };
+                return { error: null };
             } catch {
-                return { error: true, reason: 'Failed to save config' };
+                return { error: 'Failed to save config' };
             }
         }
     }
 
-    return { error: true, reason: 'ID is invalid' };
+    return { error: 'ID is invalid' };
 });

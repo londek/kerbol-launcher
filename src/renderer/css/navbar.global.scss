@@ -1,0 +1,38 @@
+#navbar {
+	background-color: #19191a;
+	width: 100%;
+	height: 100px;
+	flex: 1;
+	display: flex;
+}
+
+#navbar-tab-container {
+	margin: 0 20px 0 50px;
+	width: 170px;
+	height: 100%;
+	display: grid;
+}
+
+#navbar-tab-text {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 23px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	margin-top: 35px;
+	margin-bottom: 0;
+}
+
+#navbar-tab-line {
+	display: block;
+    height: 10px;
+    width: 100%;
+    background-color: white;
+    margin-top: auto;
+}
+
+#navbar-tab-line.active {
+    background-color: #39b54a;
+}
