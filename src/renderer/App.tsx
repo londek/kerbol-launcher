@@ -1,10 +1,12 @@
 import './css/app.global.scss';
 
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
-import Navbar from './components/Navbar';
+
 import Sidebar from './components/Sidebar';
+import HomeView from './views/homePage';
+import ModsView from './views/modPage';
+import OptionsView from './views/optionsPage';
 
 /*
             <div id="app-wrapper">
@@ -62,7 +64,12 @@ class App extends Component<unknown, State> {
         return (
             <React.Fragment>
                 <Sidebar instances={this.state.instances} selectedInstance={this.state.defaultInstance} />
-                <Navbar />
+                <Switch>
+                    <Route path="/"><HomeView /></Route>
+                    <Route path="/home"><HomeView /></Route>
+                    <Route path="/mods"><ModsView /></Route>
+                    <Route path="/options"><OptionsView /></Route>
+                </Switch>
             </React.Fragment>
         );
     }

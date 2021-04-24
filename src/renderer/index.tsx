@@ -1,6 +1,7 @@
 import App from './App';
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { FileFilter, OpenDialogReturnValue } from 'electron';
 
@@ -19,4 +20,4 @@ declare global {
     const kerbolAPI: IkerbolAPI;
 }
 
-render(<App />, document.getElementById('app'));
+render(<Router><App /></Router>, document.getElementById('app'));
