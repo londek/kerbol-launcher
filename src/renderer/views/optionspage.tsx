@@ -8,12 +8,12 @@ export interface OptionsViewState {
 
 }
 
-class OptionsView extends React.Component<OptionsViewProps, OptionsViewState> {
+class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
     constructor(props: OptionsViewProps) {
         super(props);
     }
-    render() {
-        return ( null );
+    render(): JSX.Element {
+        return ( <h4>OptionsPage Hello world</h4> );
     }
 }
 

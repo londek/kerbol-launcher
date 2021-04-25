@@ -1,0 +1,13 @@
+@import "colors";
+
+#homeview__footer {
+    width: 100%;
+    height: 70px;
+    background-color: $dark;
+}
+
+#homeview__feed-wrapper {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+}

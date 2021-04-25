@@ -48,9 +48,10 @@ const createWindow = async () => {
             .catch(err => console.log('An error occurred: ', err));
 
         mainWindow.webContents.openDevTools();
+    } else {
+        mainWindow.removeMenu();
     }
 
-    mainWindow.removeMenu();
     mainWindow.loadURL(`file://${development ? path.join(__dirname, 'renderer/index.html') : path.join(__dirname, 'index.html')}`);
 
     mainWindow.once('ready-to-show', () => {

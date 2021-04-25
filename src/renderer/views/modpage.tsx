@@ -8,12 +8,12 @@ export interface ModsViewState {
 
 }
 
-class ModsView extends React.Component<ModsViewProps, ModsViewState> {
+class ModsView extends Component<ModsViewProps, ModsViewState> {
     constructor(props: ModsViewProps) {
         super(props);
     }
-    render() {
-        return ( null );
+    render(): JSX.Element {
+        return ( <h4>Hello mods</h4> );
     }
 }
 

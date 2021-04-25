@@ -1,12 +1,13 @@
 import './css/app.global.scss';
 
-import { Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 
 import Sidebar from './components/Sidebar';
 import HomeView from './views/homePage';
 import ModsView from './views/modPage';
 import OptionsView from './views/optionsPage';
+import Navbar from './components/Navbar';
 
 /*
             <div id="app-wrapper">
@@ -52,7 +53,6 @@ class App extends Component<unknown, State> {
     }
 
     componentDidMount(): void {
-        //kerbolAPI.configManager.fetchGameInstances().then(e => this.setState({ enableQuickstartView: Object.keys(e).length === 0 }));
         kerbolAPI.configManager.fetchGameInstances()
             .then(instances => this.setState({ instances }));
 
@@ -62,15 +62,19 @@ class App extends Component<unknown, State> {
 
     render(): JSX.Element {
         return (
-            <React.Fragment>
+            <HashRouter>
                 <Sidebar instances={this.state.instances} selectedInstance={this.state.defaultInstance} />
-                <Switch>
-                    <Route path="/"><HomeView /></Route>
-                    <Route path="/home"><HomeView /></Route>
-                    <Route path="/mods"><ModsView /></Route>
-                    <Route path="/options"><OptionsView /></Route>
-                </Switch>
-            </React.Fragment>
+                <div id="right-pane">
+                    <Navbar/>
+                    <div id="contents">
+                        <Switch>
+                            <Route path="/" exact><HomeView /></Route>
+                            <Route path="/mods"><ModsView /></Route>
+                            <Route path="/options"><OptionsView /></Route>
+                        </Switch>
+                    </div>
+                </div>
+            </HashRouter>
         );
     }
 }
