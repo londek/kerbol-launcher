@@ -89,6 +89,25 @@
 	margin-left: 10px;
 }
 
+#sidebar-no-instance-title {
+    line-height: 1.2em;
+    display: table-cell;
+    font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	font-size: 28px;
+	color: white;
+    margin-block: 0px;
+    margin-inline: 0px;
+}
+
+#sidebar-no-instance-text-container {
+	display: flex;
+    align-items: center;
+	height: 100%;
+	width: 100%;
+	margin-left: 10px;
+}
+
 #add-instance-btn {
 	font-size: 21px !important;
 	font-weight: 700;

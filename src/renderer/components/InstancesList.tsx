@@ -9,9 +9,9 @@ class InstancesList extends Component<InstancesListProps> {
     // Frontend component for showing if there are no instances
     private noInstancesComponent = (
             <div id="instance-container">
-                <div id="instance-line" className={'unactive'} />
-                <div id="sidebar-instance-text-container">
-                    <label id="sidebar-instance-title">No instances</label><br />
+                <div id="instance-line" className='unactive' />
+                <div id="sidebar-no-instance-text-container">
+                    <p id="sidebar-no-instance-title">No instances</p>
                 </div>
             </div>
     );

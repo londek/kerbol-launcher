@@ -1,13 +1,100 @@
 @import "colors";
 
-#homeview__footer {
-    width: 100%;
-    height: 70px;
-    background-color: $dark;
-}
-
 #homeview__feed-wrapper {
     width: 100%;
     height: 100%;
     flex: 1;
+    display: grid;
+}
+
+#homeview__feed-loading {
+    font-family: 'Lato', sans-serif;
+    font-size: 40px;
+    font-weight: 200;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    color: white;
+}
+
+#homeview__feed-container {
+    height: 90%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#homeview__feed-title {
+    color: white;
+    font-weight: 800;
+    font-size: 26px;
+}
+
+#homeview__feed-footer {
+    color: gainsboro;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+#homeview__feed-tags {
+    color: gainsboro;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+#homeview__feed-scroller-wrapper {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+
+#homeview__feed-horizontal-line {
+    background-color: white;
+    width: 100%;
+    margin: 23px 0px;
+    height: 1px;
+}
+
+#homeview__feed-scroller {
+    color: white;
+    word-wrap: normal;
+    white-space: break-spaces;
+    font-weight: 400;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    padding: 25px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#homeview__feed-scroller > pre {
+    margin: 0.1em 0px;
+    word-wrap: break-word;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    white-space:pre-wrap;
+    font-size: 14px;
+    padding: 17px;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#homeview__footer {
+    width: 100%;
+    height: 70px;
+    background-color: $dark;
+    display: grid;
+}
+
+#homeview__footer-play-btn {
+    margin: auto;
+    height: 50px;
+    width: 125px;
 }

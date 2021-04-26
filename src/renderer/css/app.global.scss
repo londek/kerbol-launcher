@@ -1,13 +1,32 @@
 @import "colors";
 
 body {
+    font-family: 'Lato', sans-serif;
     user-select: none;
 	margin: 0;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: $dark;        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $darker;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid $darker;  /* creates padding around scroll thumb */
 }
 
 a {
     text-decoration: none;
     -webkit-user-drag: none;
+}
+
+a:-webkit-any-link {
+    color:$lightBlue;
 }
 
 input {
@@ -41,7 +60,7 @@ input {
 
 .green-btn {
 	border: 0;
-	background-color: #37a048;
+	background-color: $lightGreen;
 	color: white;
 	font-family: 'Lato', sans-serif;
     font-size: 16px;

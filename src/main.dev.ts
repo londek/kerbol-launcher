@@ -69,6 +69,12 @@ const createWindow = async () => {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    // Open clicked links in default browser
+    mainWindow.webContents.on('new-window', (e, url) => {
+        e.preventDefault();
+        require('electron').shell.openExternal(url);
+    });
 };
 
 app.once('window-all-closed', () => {
