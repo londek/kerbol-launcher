@@ -3,15 +3,15 @@ import '../css/homeview.global.scss';
 import React, { Component } from 'react';
 import HomeViewFeed from '../components/homeViewFeed';
 
-export interface HomeViewProps {
+interface HomeViewProps {
 
 }
 
-export interface HomeViewState {
+interface HomeViewState {
 
 }
 
-class HomeView extends React.Component<HomeViewProps, HomeViewState> {
+class HomeView extends Component<HomeViewProps, HomeViewState> {
     constructor(props: HomeViewProps) {
         super(props);
     }

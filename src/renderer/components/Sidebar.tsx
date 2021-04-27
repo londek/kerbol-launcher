@@ -1,8 +1,8 @@
 import '../css/sidebar.global.scss';
 
 import React, { Component } from 'react';
-import InstancesList from './InstancesList';
-import { InstanceItemProps } from './InstanceItem';
+import InstancesList from './instancesList';
+import { InstanceItemProps } from './instanceItem';
 
 interface SidebarProps {
     instances: { [key: string]: GameInstance }

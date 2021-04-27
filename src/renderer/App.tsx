@@ -3,11 +3,12 @@ import './css/app.global.scss';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 
-import Sidebar from './components/Sidebar';
-import HomeView from './views/homePage';
-import ModsView from './views/modPage';
-import OptionsView from './views/optionsPage';
-import Navbar from './components/Navbar';
+import Sidebar from './components/sidebar';
+import HomeView from './views/homeView';
+import ModsView from './views/modView';
+import OptionsView from './views/optionsView';
+import Navbar from './components/navbar';
+import AddInstanceModal from './views/addInstanceModal';
 
 /*
             <div id="app-wrapper">
@@ -63,7 +64,10 @@ class App extends Component<unknown, State> {
     render(): JSX.Element {
         return (
             <HashRouter>
+                <AddInstanceModal />
+
                 <Sidebar instances={this.state.instances} selectedInstance={this.state.defaultInstance} />
+
                 <div id="right-pane">
                     <Navbar/>
                     <div id="contents">

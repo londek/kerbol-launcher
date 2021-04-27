@@ -1,0 +1,66 @@
+@import "colors";
+
+#modal__add-instance {
+    display: grid;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $dark;
+    z-index: 10;
+}
+
+#modal__add-instance-container {
+    vertical-align: middle;
+    display: table-cell;
+    margin: auto;
+    height: 440px;
+    padding: 20px;
+}
+
+#modal__add-instance-title {
+    text-align: center;
+    display: block;
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    margin: auto;
+}
+
+.modal__add-instance-field-container {
+    display: table;
+    margin: auto;
+    padding: 10px;
+}
+
+.modal__add-instance-label {
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    margin: auto;
+}
+
+
+.modal__add-instance-input {
+    color: white;
+    outline: none;
+    background-color: $darker;
+    border: 0;
+    padding-left: 20px;
+    height: 40px;
+    width: 425px;
+}
+
+.modal__add-instance-input::placeholder {
+    font-size: 15px;
+}
+
+#modal__add-instance-input-submit-btn {
+    font-size: 21px;
+    margin: auto;
+    margin-top: 35px;
+    width: 200px;
+    height: 70px;
+    display: block;
+}
