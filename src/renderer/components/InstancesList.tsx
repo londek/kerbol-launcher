@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InstanceItem, { InstanceItemProps } from './InstanceItem';
+import InstanceItem, { InstanceItemProps } from './instanceItem';
 
 export interface InstancesListProps {
     instances: InstanceItemProps[]
