@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import HomeViewFeed from '../components/homeViewFeed';
 
 interface HomeViewProps {
-
+    selectedInstance: GameInstance;
 }
 
 interface HomeViewState {

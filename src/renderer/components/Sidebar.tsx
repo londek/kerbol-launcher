@@ -2,12 +2,13 @@ import '../css/sidebar.global.scss';
 
 import React, { Component } from 'react';
 import InstancesList from './instancesList';
-import { InstanceItemProps } from './instanceItem';
+import { IInstanceItem } from './instanceItem';
 
 interface SidebarProps {
     instances: { [key: string]: GameInstance }
     selectedInstance: string | null;
     onAddInstanceModal: () => void;
+    onInstanceSelect: (id: string) => void;
 }
 
 class Sidebar extends Component<SidebarProps> {
@@ -24,19 +25,20 @@ class Sidebar extends Component<SidebarProps> {
                     </p>
                 </div>
 
-                <InstancesList instances={this.formatInstancesList()} />
+                <InstancesList instances={this.formatInstancesList()}
+                    onSelect={this.props.onInstanceSelect} />
 
-                <button id="add-instance-btn" className="green-btn" onClick={() => this.props.onAddInstanceModal()}>
+                <button id="add-instance-btn" className="green-btn" onClick={this.props.onAddInstanceModal}>
                     ADD INSTANCE
                 </button>
             </div>
         );
     }
 
-    formatInstancesList = (): InstanceItemProps[] => {
+    formatInstancesList = (): IInstanceItem[] => {
         if(Object.keys(this.props.instances).length === 0) return [];
 
-        return Object.entries(this.props.instances).map(([key, { label }]): InstanceItemProps => (
+        return Object.entries(this.props.instances).map(([key, { label }]): IInstanceItem => (
             { label, instanceId: key, active: key === this.props.selectedInstance }
         ));
     }

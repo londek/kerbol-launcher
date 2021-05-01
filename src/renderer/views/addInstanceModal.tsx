@@ -30,6 +30,18 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
         error: ''
     }
 
+    componentDidMount(): void {
+        window.addEventListener('keydown', this.handleKeybind);
+    }
+
+    componentWillUnmount(): void {
+        window.removeEventListener('keydown', this.handleKeybind);
+    }
+
+    handleKeybind = (event: KeyboardEvent): void => {
+        if(event.key === 'Escape') this.props.onCloseRequest();
+    }
+
     handleExit = (): void => {
         this.props.onCloseRequest();
     }
@@ -86,7 +98,7 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
                             name="label"
                             type="text"
                             placeholder="Name this instance"
-                            maxLength={13}
+                            maxLength={14}
                             value={this.state.label}
                             onChange={this.handleInputChange} /><br />
                     </div>

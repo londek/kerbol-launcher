@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 interface ModsViewProps {
-
+    selectedInstance: GameInstance;
 }
 
 interface ModsViewState {
@@ -13,7 +13,7 @@ class ModsView extends Component<ModsViewProps, ModsViewState> {
         super(props);
     }
     render(): JSX.Element {
-        return ( <h4>Hello mods</h4> );
+        return ( <h4>Mods are scheduled for mid-late May</h4> );
     }
 }
 

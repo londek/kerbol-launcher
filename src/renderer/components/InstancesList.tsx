@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import InstanceItem, { InstanceItemProps } from './instanceItem';
+import InstanceItem, { IInstanceItem } from './instanceItem';
 
 export interface InstancesListProps {
-    instances: InstanceItemProps[]
+    instances: IInstanceItem[];
+    onSelect: (id: string) => void;
 }
 
 class InstancesList extends Component<InstancesListProps> {
@@ -31,12 +32,13 @@ class InstancesList extends Component<InstancesListProps> {
         return instances.map(instance => this.formatInstance(instance));
     };
 
-    formatInstance = ({label, modpack, active, instanceId}: InstanceItemProps): JSX.Element => {
+    formatInstance = ({label, modpack, active, instanceId}: IInstanceItem): JSX.Element => {
         return <InstanceItem key={instanceId}
             label={label}
             modpack={modpack}
             active={active}
             instanceId={instanceId}
+            onSelect={this.props.onSelect}
         />;
     };
 }

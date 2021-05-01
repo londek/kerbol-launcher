@@ -46,7 +46,7 @@ class HomeViewFeed extends Component<unknown, HomeViewFeedState> {
 
     formatFeed = (): JSX.Element => {
         if(!this.state.newsData) {
-            return <h4 id="homeview__feed-loading">Loading</h4>;
+            return <h4 id="homeview__feed-loading"></h4>;
         }
 
         const { title, date, contents, tags } = this.state.newsData;

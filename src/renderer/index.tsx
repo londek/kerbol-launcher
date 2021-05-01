@@ -11,13 +11,13 @@ declare global {
             storeGameInstance(instance: StoreGameInstance): Promise<ErrorableResponse>;
             deleteGameInstance(id: string): Promise<ErrorableResponse>;
             fetchDefaultInstance(): Promise<string>;
-            updateDefaultInstance(id: string): Promise<ErrorableResponse>;
+            updateDefaultInstance(id: string): Promise<void>;
 
             fetchGameInstancesSync(): {[key: string]: GameInstance};
             storeGameInstanceSync(instance: StoreGameInstance): ErrorableResponse;
             deleteGameInstanceSync(id: string): ErrorableResponse;
             fetchDefaultInstanceSync(): string;
-            updateDefaultInstanceSync(id: string): ErrorableResponse;
+            updateDefaultInstanceSync(id: string): void;
         };
         fileManager: {
             openFileDialog(filters?: FileFilter[], properties?: unknown): Promise<OpenDialogReturnValue>;

@@ -20,6 +20,10 @@ body {
     border: 3px solid $darker;  /* creates padding around scroll thumb */
 }
 
+* {
+    cursor: inherit;
+}
+
 a {
     text-decoration: none;
     -webkit-user-drag: none;
