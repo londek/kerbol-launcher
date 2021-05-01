@@ -1,5 +1,6 @@
 # Kerbol Launcher
-[![Discord](https://img.shields.io/discord/838044302419689482?label=Discord&style=flat-square)(https://discord.gg/bCaTbeKEtS)&nbsp;
+[![Discord](https://img.shields.io/discord/838044302419689482?label=Discord&style=flat-square)](https://discord.gg/bCaTbeKEtS)
+![David](https://img.shields.io/david/Londek/kerbol-launcher?style=flat-square)
 
 Whole system in one place.
 KSP Unofficial launcher for public use,
