@@ -42,15 +42,22 @@ import AddInstanceModal from './views/addInstanceModal';
                     <div id="page-contents"></div>
                 </div>*/
 
-interface State {
+interface AppState {
     instances: {[key: string]: GameInstance};
     defaultInstance: string | null;
+    modal: AppModal;
 }
 
-class App extends Component<unknown, State> {
-    state: State = {
+enum AppModal {
+    NONE,
+    ADD_INSTANCE
+}
+
+class App extends Component<unknown, AppState> {
+    state: AppState = {
         instances: {},
-        defaultInstance: null
+        defaultInstance: null,
+        modal: AppModal.NONE
     }
 
     componentDidMount(): void {
@@ -61,12 +68,30 @@ class App extends Component<unknown, State> {
             .then(defaultInstance => this.setState({ defaultInstance }));
     }
 
+    handleAddInstanceModal = (): void => {
+        this.setState({ modal: AppModal.ADD_INSTANCE });
+    }
+
     render(): JSX.Element {
+
+        let modal: JSX.Element | null = null;
+        switch(this.state.modal) {
+            case AppModal.ADD_INSTANCE:
+                modal = <AddInstanceModal onCloseRequest={() => this.setState({ modal: AppModal.NONE })}/>;
+                break;
+        }
+
         return (
             <HashRouter>
-                <AddInstanceModal />
+                { modal }
 
-                <Sidebar instances={this.state.instances} selectedInstance={this.state.defaultInstance} />
+                <Sidebar instances={this.state.instances}
+                    selectedInstance={this.state.defaultInstance}
+                    onAddInstanceModal={() => {
+                        if(this.state.modal === AppModal.NONE) return this.setState({ modal: AppModal.ADD_INSTANCE });
+                        this.setState({ modal: AppModal.NONE });
+                    }}
+                />
 
                 <div id="right-pane">
                     <Navbar/>

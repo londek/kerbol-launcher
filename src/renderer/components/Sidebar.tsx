@@ -7,6 +7,7 @@ import { InstanceItemProps } from './instanceItem';
 interface SidebarProps {
     instances: { [key: string]: GameInstance }
     selectedInstance: string | null;
+    onAddInstanceModal: () => void;
 }
 
 class Sidebar extends Component<SidebarProps> {
@@ -25,7 +26,7 @@ class Sidebar extends Component<SidebarProps> {
 
                 <InstancesList instances={this.formatInstancesList()} />
 
-                <button id="add-instance-btn" className="green-btn">
+                <button id="add-instance-btn" className="green-btn" onClick={() => this.props.onAddInstanceModal()}>
                     ADD INSTANCE
                 </button>
             </div>
