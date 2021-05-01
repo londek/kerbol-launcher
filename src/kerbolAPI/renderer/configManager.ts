@@ -16,8 +16,8 @@ export function fetchGameInstancesSync(): {[key: string]: GameInstance} {
     return ipcRenderer.invokeSync(CONFIG_MANAGER_FETCH_GAME_INSTANCES) as {[key: string]: GameInstance};
 }
 
-export function storeGameInstanceSync(instance: StoreGameInstance): void {
-    ipcRenderer.invokeSync(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance);
+export function storeGameInstanceSync(instance: StoreGameInstance): ErrorableResponse {
+    return ipcRenderer.invokeSync(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance) as ErrorableResponse;
 }
 
 export function deleteGameInstanceSync(id: string): ErrorableResponse {
@@ -38,8 +38,8 @@ export async function fetchGameInstances(): Promise<{[key: string]: GameInstance
     return ipcRenderer.invoke(CONFIG_MANAGER_FETCH_GAME_INSTANCES) as Promise<{[key: string]: GameInstance}>;
 }
 
-export async function storeGameInstance(instance: StoreGameInstance): Promise<void> {
-    ipcRenderer.invoke(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance);
+export async function storeGameInstance(instance: StoreGameInstance): Promise<ErrorableResponse> {
+    return ipcRenderer.invoke(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance) as Promise<ErrorableResponse>;
 }
 
 export async function deleteGameInstance(id: string): Promise<ErrorableResponse> {

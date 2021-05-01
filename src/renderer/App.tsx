@@ -55,16 +55,20 @@ class App extends Component<unknown, AppState> {
         this.fetchGameInstances();
     }
 
+    handleCloseRequest = async (): Promise<void> => {
+        this.setState({ modal: AppModal.NONE });
+        await this.fetchGameInstances();
+    }
+
     render(): JSX.Element {
         let modal: JSX.Element | null = null;
         switch(this.state.modal) {
             case AppModal.ADD_INSTANCE:
-                modal = <AddInstanceModal onCloseRequest={async () => {
-                    this.setState({ modal: AppModal.NONE });
-                    await this.fetchGameInstances();
-                }}/>;
+                modal = <AddInstanceModal onCloseRequest={this.handleCloseRequest}/>;
                 break;
         }
+
+        if(Object.keys(this.state.instances).length === 0) modal = <AddInstanceModal onCloseRequest={this.handleCloseRequest} closeable={false} />;
 
         return (
             <HashRouter>

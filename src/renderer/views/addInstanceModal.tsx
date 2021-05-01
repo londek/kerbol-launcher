@@ -5,8 +5,8 @@ import React, { ChangeEvent, Component, FormEvent } from 'react';
 import { FaFolderOpen, FaTimes } from 'react-icons/fa';
 
 export interface AddInstanceModalProps {
+    closeable: boolean;
     onCloseRequest: () => void
-
 }
 
 export interface AddInstanceModalState {
@@ -18,6 +18,11 @@ export interface AddInstanceModalState {
 }
 
 class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModalState> {
+    static defaultProps = {
+        closeable: true,
+        onCloseRequest: (): void => void 0
+    }
+
     state = {
         label: '',
         path: '',
@@ -67,9 +72,9 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
     render(): JSX.Element {
         return (
             <div id="modal__add-instance">
-                <button id="modal__add-instance-exit-btn" onClick={this.handleExit}>
+                {this.props.closeable && <button id="modal__add-instance-exit-btn" onClick={this.handleExit}>
                     <FaTimes id="modal__add-instance-exit-btn-icon" />
-                </button>
+                </button>}
 
                 <form id="modal__add-instance-container" onSubmit={this.handleSubmit}>
                     <label id="modal__add-instance-title">ADD NEW INSTANCE</label>
