@@ -1,4 +1,8 @@
-const IPCActions = {
+interface IPCActions {
+    [key: string]: string;
+}
+
+const IPCActions: IPCActions = {
     FILE_MANAGER_OPEN_FILE_DIALOG: '',
 
     CONFIG_MANAGER_FETCH_GAME_INSTANCES: '',
@@ -11,7 +15,6 @@ const IPCActions = {
 };
 
 for (const key in IPCActions) {
-    // @ts-expect-error TS wrongly assumes that its any type. Could disable in tsconfig noImplicitAny but why :D
     IPCActions[key] = 'LAUNCHER_' + key;
 }
 
