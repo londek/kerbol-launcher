@@ -7,6 +7,8 @@
     <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" >
 </p>
 
+## Under active development
+
 ## Why?
 I needed something, what could manage multiple game versions, make modpacks and look good - so I came up with this.
 
