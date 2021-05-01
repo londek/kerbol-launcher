@@ -1,6 +1,6 @@
 import '../css/addinstance.global.scss';
 
-import React, { ChangeEvent, Component, FormEvent, KeyboardEvent } from 'react';
+import React, { ChangeEvent, Component, FormEvent } from 'react';
 
 import { FaFolderOpen, FaTimes } from 'react-icons/fa';
 
@@ -70,6 +70,7 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
                 <button id="modal__add-instance-exit-btn" onClick={this.handleExit}>
                     <FaTimes id="modal__add-instance-exit-btn-icon" />
                 </button>
+
                 <form id="modal__add-instance-container" onSubmit={this.handleSubmit}>
                     <label id="modal__add-instance-title">ADD NEW INSTANCE</label>
                     <br />

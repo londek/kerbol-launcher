@@ -7,8 +7,8 @@ export interface InstancesListProps {
 
 class InstancesList extends Component<InstancesListProps> {
     // Frontend component for showing if there are no instances
-    private noInstancesComponent = (
-            <div id="instance-container">
+    noInstancesComponent = (
+            <div id="instance-container" key="no-instances-comp">
                 <div id="instance-line" className='unactive' />
                 <div id="sidebar-no-instance-text-container">
                     <p id="sidebar-no-instance-title">No instances</p>
@@ -24,16 +24,15 @@ class InstancesList extends Component<InstancesListProps> {
         );
     }
 
-    private formatInstances = (): JSX.Element[] => {
+    formatInstances = (): JSX.Element[] => {
         const { instances } = this.props;
 
         if(instances.length === 0) return [ this.noInstancesComponent ];
         return instances.map(instance => this.formatInstance(instance));
     };
 
-    private formatInstance = ({label, modpack, active, instanceId}: InstanceItemProps): JSX.Element => {
-        return <InstanceItem
-            key={instanceId}
+    formatInstance = ({label, modpack, active, instanceId}: InstanceItemProps): JSX.Element => {
+        return <InstanceItem key={instanceId}
             label={label}
             modpack={modpack}
             active={active}
