@@ -61,7 +61,8 @@ class App extends Component<unknown, AppState> {
     }
 
     handleInstanceSelect = (id: string): void => {
-        kerbolAPI.configManager.updateDefaultInstance(id).then(() => {
+        kerbolAPI.configManager.updateDefaultInstance(id).then(({ error }) => {
+            if(error) return console.log(error);
             this.setState({ defaultInstance: id });
         });
     }
@@ -81,8 +82,7 @@ class App extends Component<unknown, AppState> {
                 <Sidebar instances={this.state.instances}
                     selectedInstance={this.state.defaultInstance}
                     onAddInstanceModal={this.handleAddInstanceModal}
-                    onInstanceSelect={this.handleInstanceSelect}
-                />
+                    onInstanceSelect={this.handleInstanceSelect} />
 
                 <div id="right-pane">
                     <Navbar/>

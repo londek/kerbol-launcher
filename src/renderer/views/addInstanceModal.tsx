@@ -27,7 +27,7 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
         label: '',
         path: '',
         opts: '',
-        error: ''
+        error: '\u00A0' // NBSP
     }
 
     componentDidMount(): void {
