@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export interface ModsViewProps {
+interface ModsViewProps {
 
 }
 
-export interface ModsViewState {
+interface ModsViewState {
 
 }
 

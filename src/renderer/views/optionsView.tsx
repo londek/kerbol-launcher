@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
-export interface OptionsViewProps {
-
+interface OptionsViewProps {
+    selectedInstance: GameInstance;
+    instanceId: string;
+    onDeleteInstance: () => void;
 }
 
-export interface OptionsViewState {
+interface OptionsViewState {
 
 }
 
@@ -12,8 +14,9 @@ class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
     constructor(props: OptionsViewProps) {
         super(props);
     }
+
     render(): JSX.Element {
-        return ( <h4>OptionsPage Hello world</h4> );
+        return ( <h4 onClick={this.props.onDeleteInstance}>OptionsPage Hello world</h4> );
     }
 }
 

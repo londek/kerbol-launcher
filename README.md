@@ -1,9 +1,13 @@
 # Kerbol Launcher
+[![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square)](https://discord.gg/bCaTbeKEtS)&nbsp;
 Whole system in one place.
 KSP Unofficial launcher for public use,
 
 ## Why?
 I needed something, what could manage multiple game versions, make modpacks and look good - so I came up with this.
+
+## When first alpha?
+Late June 2021
 
 ## Contributing
 Todo. For now just use your intuition and describe problem clearly.

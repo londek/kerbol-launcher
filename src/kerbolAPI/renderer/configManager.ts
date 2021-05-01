@@ -5,6 +5,7 @@ import IPCActions from '../actions';
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,
     CONFIG_MANAGER_STORE_GAME_INSTANCE,
+    CONFIG_MANAGER_DELETE_GAME_INSTANCE,
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE,
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE
 } = IPCActions;
@@ -19,6 +20,10 @@ export function storeGameInstanceSync(instance: StoreGameInstance): void {
     ipcRenderer.invokeSync(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance);
 }
 
+export function deleteGameInstanceSync(id: string): ErrorableResponse {
+    return ipcRenderer.invokeSync(CONFIG_MANAGER_DELETE_GAME_INSTANCE, id) as ErrorableResponse;
+}
+
 export function fetchDefaultInstanceSync(): string {
     return ipcRenderer.invokeSync(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE) as string;
 }
@@ -30,17 +35,21 @@ export function updateDefaultInstanceSync(id: string): void {
 // Async
 
 export async function fetchGameInstances(): Promise<{[key: string]: GameInstance}> {
-    return <Promise<{[key: string]: GameInstance}>>ipcRenderer.invoke(CONFIG_MANAGER_FETCH_GAME_INSTANCES);
+    return ipcRenderer.invoke(CONFIG_MANAGER_FETCH_GAME_INSTANCES) as Promise<{[key: string]: GameInstance}>;
 }
 
 export async function storeGameInstance(instance: StoreGameInstance): Promise<void> {
-    return <Promise<void>>ipcRenderer.invoke(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance);
+    ipcRenderer.invoke(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance);
+}
+
+export async function deleteGameInstance(id: string): Promise<ErrorableResponse> {
+    return ipcRenderer.invoke(CONFIG_MANAGER_DELETE_GAME_INSTANCE, id) as Promise<ErrorableResponse>;
 }
 
 export async function fetchDefaultInstance(): Promise<string> {
-    return <Promise<string>>ipcRenderer.invoke(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE);
+    return ipcRenderer.invoke(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE) as Promise<string>;
 }
 
 export async function updateDefaultInstance(id: string): Promise<void> {
-    return <Promise<void>>ipcRenderer.invoke(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id);
+    ipcRenderer.invoke(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id);
 }

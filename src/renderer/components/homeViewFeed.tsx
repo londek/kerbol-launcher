@@ -2,27 +2,34 @@
 import parser from 'bbcode-to-react';
 import React, { Component } from 'react';
 
+interface INewsData {
+    title: string;
+    tags: string[];
+    date: number;
+    contents: string;
+    url: string;
+    [key: string]: unknown;
+}
+
 interface HomeViewFeedState {
-    newsData: unknown | null;
+    newsData: INewsData | null;
 }
 
 class HomeViewFeed extends Component<unknown, HomeViewFeedState> {
-    state = {
+    state: HomeViewFeedState = {
         newsData: null
     }
 
     componentDidMount(): void {
         fetch('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=220200&count=1&format=json')
-            .then(res => res.json())
+            .then(result => result.json())
             .then(
-                (result) => {
-                    this.setState({ newsData: result.appnews.newsitems[0] });
-                    console.log('Downloaded KSP news from Steam', this.state.newsData);
-                },
-                (error) => {
-                    console.log(error);
+                result => {
+                    const newsData = result.appnews.newsitems[0];
+                    this.setState({ newsData });
+                    console.log('Downloaded KSP news from Steam', newsData);
                 }
-            );
+            ).catch(error => console.log(error));
     }
 
     render(): JSX.Element {
@@ -33,17 +40,22 @@ class HomeViewFeed extends Component<unknown, HomeViewFeedState> {
         );
     }
 
-    private formatFeed(): JSX.Element {
-        if(this.state.newsData === null) return (<h4 id="homeview__feed-loading">Loading</h4>);
+    handleOnClick = (): void => {
+        window.open(this.state.newsData?.url);
+    }
 
-        // @ts-expect-error: Typescript wrongly assumes its null
+    formatFeed = (): JSX.Element => {
+        if(!this.state.newsData) {
+            return <h4 id="homeview__feed-loading">Loading</h4>;
+        }
+
         const { title, date, contents, tags } = this.state.newsData;
 
         const formattedDateString = new Date(date * 1000).toDateString();
 
         return (
             <div id="homeview__feed-container">
-                <label id="homeview__feed-title">{title}</label>
+                <label id="homeview__feed-title" onClick={this.handleOnClick}>{title}</label>
                 <label id="homeview__feed-footer">{formattedDateString}</label>
                 <label id="homeview__feed-tags">{tags.join(' ')}</label>
 

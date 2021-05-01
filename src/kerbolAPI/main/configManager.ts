@@ -9,6 +9,7 @@ import IPCActions from '../actions';
 const {
     CONFIG_MANAGER_FETCH_GAME_INSTANCES,
     CONFIG_MANAGER_STORE_GAME_INSTANCE,
+    CONFIG_MANAGER_DELETE_GAME_INSTANCE,
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE,
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE,
 } = IPCActions;
@@ -95,9 +96,38 @@ ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGame
         return { error: 'Cannot access this path' };
     }
 
+    // Check if executable lives in directory and if launcher can execute it
+    try {
+        fs.accessSync(path.join(parsedPath.dir, 'KSP_x64.exe'), fs.constants.X_OK);
+    } catch(e) {
+        console.log(e);
+        return { error: 'Cannot execute KSP in this path' };
+    }
+
     const instanceId = uuidv4();
     localConfig.instances[instanceId] = { ...instance, root: parsedPath.dir };
     localConfig.defaultInstance = instanceId;
+
+    try {
+        saveConfig();
+        return { error: null };
+    } catch {
+        return { error: 'Failed to save config' };
+    }
+});
+
+ipcMain.handle(CONFIG_MANAGER_DELETE_GAME_INSTANCE, async (_, id: string): Promise<ErrorableResponse> => {
+    console.log(`Received ${CONFIG_MANAGER_DELETE_GAME_INSTANCE}`);
+
+    if(!id || !localConfig.instances[id]) return { error: 'Could not find instance with this ID' };
+
+    delete localConfig.instances[id];
+
+    // Check if id is default instnace
+    if(id === localConfig.defaultInstance) {
+        const ids = Object.keys(localConfig.instances);
+        localConfig.defaultInstance = (ids.length > 0 ? ids[0] : '');
+    }
 
     try {
         saveConfig();
