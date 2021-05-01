@@ -4,7 +4,7 @@
     <img src="https://img.shields.io/github/license/Londek/kerbol-launcher?style=for-the-badge" alt="License"/>
     <img src="https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge" alt="Discord"/>
     <img src="https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge" alt="Dependencies state"/>
-    <img alt="Code Climate maintainability" src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?style=for-the-badge">
+    <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" >
 </p>
 
 ## Why?
