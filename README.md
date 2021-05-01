@@ -1,4 +1,5 @@
 # Kerbol Launcher
+![GitHub](https://img.shields.io/github/license/Londek/kerbol-launcher?style=for-the-badge)
 [![Discord](https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bCaTbeKEtS)
 ![David](https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge)
 
