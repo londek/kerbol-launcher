@@ -1,10 +1,10 @@
-# Kerbol Launcher
-![GitHub](https://img.shields.io/github/license/Londek/kerbol-launcher?style=for-the-badge)
-[![Discord](https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bCaTbeKEtS)
-![David](https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge)
-
-Whole system in one place.
-KSP Unofficial launcher for public use,
+<h1 align="center">Kerbol Launcher</h1>
+<h4 align="center">Rescue for people with multiple game versions and modpacks</h1>
+<p align="center">
+    <img src="https://img.shields.io/github/license/Londek/kerbol-launcher?style=for-the-badge" alt="License"/>
+    <img src="https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge" alt="Discord"/>
+    <img src="https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge" alt="Dependencies state"/>
+</p>
 
 ## Why?
 I needed something, what could manage multiple game versions, make modpacks and look good - so I came up with this.
