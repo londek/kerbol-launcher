@@ -9,7 +9,25 @@ const {
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE
 } = IPCActions;
 
-// TODO Export all types to some kind of module
+// Sync
+
+export function fetchGameInstancesSync(): {[key: string]: GameInstance} {
+    return ipcRenderer.invokeSync(CONFIG_MANAGER_FETCH_GAME_INSTANCES) as {[key: string]: GameInstance};
+}
+
+export function storeGameInstanceSync(instance: StoreGameInstance): void {
+    ipcRenderer.invokeSync(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance);
+}
+
+export function fetchDefaultInstanceSync(): string {
+    return ipcRenderer.invokeSync(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE) as string;
+}
+
+export function updateDefaultInstanceSync(id: string): void {
+    ipcRenderer.invokeSync(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id);
+}
+
+// Async
 
 export async function fetchGameInstances(): Promise<{[key: string]: GameInstance}> {
     return <Promise<{[key: string]: GameInstance}>>ipcRenderer.invoke(CONFIG_MANAGER_FETCH_GAME_INSTANCES);
