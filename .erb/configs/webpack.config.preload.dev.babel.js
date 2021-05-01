@@ -8,7 +8,6 @@ import { merge } from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import baseConfig from './webpack.config.base';
-import CheckNodeEnv from '../scripts/CheckNodeEnv';
 import DeleteSourceMaps from '../scripts/DeleteSourceMaps';
 
 DeleteSourceMaps();
@@ -19,7 +18,7 @@ export default merge(baseConfig, {
     entry: './src/preload.ts',
 
     output: {
-        path: path.join(__dirname, '../../src'),
+        path: path.join(__dirname, '../../dist'),
         filename: 'preload.dev.js',
     },
 

@@ -35,7 +35,7 @@ const createWindow = async () => {
             nodeIntegration: false,
             contextIsolation: true,
             enableRemoteModule: false,
-            preload: development ? path.join(__dirname, 'preload.dev.js') : path.join(__dirname, 'preload.prod.js')
+            preload: development ? path.join(__dirname, '../dist/preload.dev.js') : path.join(__dirname, 'preload.prod.js')
         }
     });
 
@@ -43,6 +43,8 @@ const createWindow = async () => {
 
     // Install react developer tools when in development
     if(development) {
+        // Workaround till issue is not solved
+        // https://github.com/MarshallOfSound/electron-devtools-installer/issues/182
         installExtension(REACT_DEVELOPER_TOOLS, { loadExtensionOptions: { allowFileAccess: true }, forceDownload: false })
             .then(name => console.log(`Added Extension:  ${name}`))
             .catch(err => console.log('An error occurred: ', err));
@@ -71,6 +73,7 @@ const createWindow = async () => {
     });
 
     // Open clicked links in default browser
+    // TODO Update 'on' function
     mainWindow.webContents.on('new-window', (e, url) => {
         e.preventDefault();
         require('electron').shell.openExternal(url);
