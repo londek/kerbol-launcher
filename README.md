@@ -1,5 +1,5 @@
 # Kerbol Launcher
-[![Discord](https://img.shields.io/discord/838044302419689482?style=for-the-badge)](https://discord.gg/bCaTbeKEtS)
+[![Discord](https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bCaTbeKEtS)
 ![David](https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge)
 
 Whole system in one place.
