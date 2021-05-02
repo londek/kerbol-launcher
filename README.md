@@ -7,19 +7,21 @@
     <img src="https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge" alt="Discord"/>
     <img src="https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge" alt="Dependencies state"/>
     <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" />
+    <img src="https://img.shields.io/badge/-Under%20active%20development-brightgreen?style=for-the-badge" alt="Under active development"/>
 </p>
-
-## Under active development
 
 ## Why?
 I needed something, what could manage multiple game versions, make modpacks and look good - so I came up with this.
 
-## When first alpha?
-Late June 2021
+## Roadmap
+Mid June - First mod management implementations  
+Late June - Alpha release  
+Early July - Create CI environment  
+Mid-Late July - Beta release  
+Later - We will see
 
 ## Contributing
 Todo. For now just use your intuition and describe problem clearly.
 
 ## Credits
-Thanks to https://github.com/electron-react-boilerplate/electron-react-boilerplate for creating wonderful boilerplate with many features.
-If you are planning to make electron-react app head out to them!
+Londek
