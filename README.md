@@ -1,6 +1,6 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/Londek/kerbol-launcher/main/assets/banner.png" alt="Kerbol Launcher logo" width="500px" />
-    <h4>Rescue for people with multiple game versions and modpacks</h4>
+    <h4 align="center">Rescue for people with multiple game versions and modpacks</h4>
 </p>
 <p align="center">
     <img src="https://img.shields.io/github/license/Londek/kerbol-launcher?style=for-the-badge" alt="License"/>
