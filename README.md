@@ -1,12 +1,12 @@
 <p align="center">>
-    <img src="https://raw.githubusercontent.com/Londek/kerbol-launcher/main/assets/banner.png" alt="Kerbol Launcher logo" width="500px">
+    <img src="https://raw.githubusercontent.com/Londek/kerbol-launcher/main/assets/banner.png" alt="Kerbol Launcher logo" width="500px" />
     <h4>Rescue for people with multiple game versions and modpacks</h1>
 </p>
 <p align="center">
     <img src="https://img.shields.io/github/license/Londek/kerbol-launcher?style=for-the-badge" alt="License"/>
     <img src="https://img.shields.io/discord/838044302419689482?logo=discord&logoColor=white&style=for-the-badge" alt="Discord"/>
     <img src="https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge" alt="Dependencies state"/>
-    <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" >
+    <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" />
 </p>
 
 ## Under active development
