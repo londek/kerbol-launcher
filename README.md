@@ -1,6 +1,5 @@
 <p align="center">>
-    <img src="https://raw.githubusercontent.com/Londek/kerbol-launcher/main/assets/icon.png" alt="Kerbol Launcher logo" width="100px">
-    <h1 style="border-bottom: 0">Kerbol Launcher</h1>
+    <img src="https://raw.githubusercontent.com/Londek/kerbol-launcher/main/assets/banner.png" alt="Kerbol Launcher logo" width="500px">
     <h4>Rescue for people with multiple game versions and modpacks</h1>
 </p>
 <p align="center">
