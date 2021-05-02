@@ -1,4 +1,4 @@
-<p align="center">>
+<p align="center">
     <img src="https://raw.githubusercontent.com/Londek/kerbol-launcher/main/assets/banner.png" alt="Kerbol Launcher logo" width="500px" />
     <h4>Rescue for people with multiple game versions and modpacks</h4>
 </p>
