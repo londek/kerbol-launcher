@@ -9,6 +9,7 @@
     <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" />
     <br />
     <img src="https://img.shields.io/badge/-Under%20active%20development-brightgreen?style=for-the-badge" alt="Under active development"/>
+    <img src="https://img.shields.io/badge/-windows%20support%20only-blue?logo=windows&style=for-the-badge" alt="Windows support only"/>
 </p>
 
 ## Why?
