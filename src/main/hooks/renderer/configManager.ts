@@ -7,9 +7,11 @@ const {
     CONFIG_MANAGER_STORE_GAME_INSTANCE,
     CONFIG_MANAGER_DELETE_GAME_INSTANCE,
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE,
-    CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE
+    CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE,
+    CONFIG_MANAGER_LAUNCH_INSTANCE
 } = IPCActions;
 
+/*
 // Sync
 
 export function fetchGameInstancesSync(): {[key: string]: GameInstance} {
@@ -29,8 +31,8 @@ export function fetchDefaultInstanceSync(): string {
 }
 
 export function updateDefaultInstanceSync(id: string): void {
-    ipcRenderer.invokeSync(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id);
-}
+    ipcRenderer.invokeSync(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id) as ErrorableResponse;
+}*/
 
 // Async
 
@@ -51,5 +53,9 @@ export async function fetchDefaultInstance(): Promise<string> {
 }
 
 export async function updateDefaultInstance(id: string): Promise<void> {
-    ipcRenderer.invoke(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id);
+    ipcRenderer.invoke(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id) as Promise<ErrorableResponse>;
+}
+
+export async function launchInstance(id: string): Promise<void> {
+    ipcRenderer.invoke(CONFIG_MANAGER_LAUNCH_INSTANCE, id);
 }

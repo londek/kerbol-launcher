@@ -10,13 +10,12 @@ declare global {
         buildId: string;
         root: string;
         label: string;
-        distro: string | null;
+        launchOptions: string[];
     }
 
     interface StoreGameInstance {
         buildId: string;
         label: string;
-        distro: string | null;
     }
 
     interface ErrorableResponse {

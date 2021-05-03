@@ -15,7 +15,7 @@ DeleteSourceMaps();
 export default merge(baseConfig, {
     mode: 'production',
     target: 'electron-preload',
-    entry: './src/preload.ts',
+    entry: './src/main/preload.ts',
 
     output: {
         path: path.join(__dirname, '../../dist'),

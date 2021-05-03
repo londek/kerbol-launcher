@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { app, ipcMain } from 'electron';
+import * as childProcess from 'child_process';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { exit } from 'process';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,10 +13,16 @@ const {
     CONFIG_MANAGER_DELETE_GAME_INSTANCE,
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE,
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE,
+    CONFIG_MANAGER_LAUNCH_INSTANCE
 } = IPCActions;
 
 const configPath = path.join(app.getPath('userData'), 'config.json');
 let localConfig: Config;
+let mainWindow: BrowserWindow;
+
+export function setMainWindow(mainwindow: BrowserWindow): void {
+    mainWindow = mainwindow;
+}
 
 function saveConfig(): void {
     fs.writeFileSync(configPath, JSON.stringify(localConfig, null, 4), { encoding: 'utf-8' });
@@ -159,4 +166,29 @@ ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInsta
     }
 
     return { error: 'ID is invalid' };
+});
+
+ipcMain.handle(CONFIG_MANAGER_LAUNCH_INSTANCE, async (_, id: string): Promise<ErrorableResponse> => {
+    console.log(`Received ${CONFIG_MANAGER_LAUNCH_INSTANCE}`);
+
+    if(!mainWindow) return { error: 'Main window in config manager has not been initialized' };
+
+    if(!id || !localConfig.instances[id]) return { error: 'Could not find instance with this ID' };
+
+    const instance: GameInstance = localConfig.instances[id];
+
+    mainWindow.hide();
+
+    childProcess.execFile(path.join(instance.root, 'KSP_x64.exe'), (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        console.error(`stderr: ${stderr}`);
+
+        mainWindow.show();
+    });
+
+    return { error: null };
 });

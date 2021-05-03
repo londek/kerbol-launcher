@@ -24,7 +24,6 @@
     },
     "exclude": [
         "release",
-        "src/preload.dev.js",
         "dist",
         ".erb/dll"
     ]

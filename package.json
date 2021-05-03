@@ -2,7 +2,7 @@
     "name": "kerbol-launcher",
     "productName": "Kerbol Launcher",
     "description": "Unofficial KSP launcher with modloader feature",
-    "main": "./src/main.dev.ts",
+    "main": "./src/main/index.ts",
     "scripts": {
         "start": "node -r @babel/register ./.erb/scripts/CheckPortInUse.js && yarn build:preload-dev && cross-env yarn start:renderer",
         "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/BabelRegister .",
@@ -177,6 +177,7 @@
         "bbcode-to-react": "^0.2.9",
         "electron-debug": "^3.1.0",
         "electron-log": "^4.2.4",
+        "electron-store": "^8.0.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-icons": "^4.2.0",

@@ -12,10 +12,6 @@ interface HomeViewState {
 }
 
 class HomeView extends Component<HomeViewProps, HomeViewState> {
-    constructor(props: HomeViewProps) {
-        super(props);
-    }
-
     render(): JSX.Element {
         return (
             <React.Fragment>

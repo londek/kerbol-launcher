@@ -2,3 +2,19 @@
 # yarn lockfile v1
 
 
+"@types/core-js@^2.5.4":
+  "integrity" "sha512-Xwy8o12ak+iYgFr/KCVaVK5Sy+jFMiiPAID3+ObvMlBzy26XQJw5xu+a6rlHsrJENXj/AwJOGsJpVohUjAzSKQ=="
+  "resolved" "https://registry.npmjs.org/@types/core-js/-/core-js-2.5.4.tgz"
+  "version" "2.5.4"
+
+"@types/source-map-support@^0.5.3":
+  "integrity" "sha512-fvjMjVH8Rmokw2dWh1dkj90iX5R8FPjeZzjNH+6eFXReh0QnHFf1YBl3B0CF0RohIAA3SDRJsGeeUWKl6d7HqA=="
+  "resolved" "https://registry.npmjs.org/@types/source-map-support/-/source-map-support-0.5.3.tgz"
+  "version" "0.5.3"
+  dependencies:
+    "source-map" "^0.6.0"
+
+"source-map@^0.6.0":
+  "integrity" "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g=="
+  "resolved" "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
+  "version" "0.6.1"

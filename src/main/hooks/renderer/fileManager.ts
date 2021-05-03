@@ -7,11 +7,12 @@ const {
     FILE_MANAGER_OPEN_FILE_DIALOG
 } = IPCActions;
 
+/*
 // Sync
 
 export function openFileDialogSync(filters?: FileFilter[], properties?: string[]): OpenDialogReturnValue {
     return ipcRenderer.invokeSync(FILE_MANAGER_OPEN_FILE_DIALOG, { filters, properties }) as OpenDialogReturnValue;
-}
+}*/
 
 // Async
 

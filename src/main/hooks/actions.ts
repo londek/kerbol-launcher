@@ -12,6 +12,8 @@ const IPCActions: IPCActions = {
 
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE: '',
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE: '',
+
+    CONFIG_MANAGER_LAUNCH_INSTANCE: ''
 };
 
 for (const key in IPCActions) {
