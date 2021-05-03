@@ -4,7 +4,7 @@ import 'regenerator-runtime/runtime';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import sourceMapSupport from 'source-map-support';
 
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, globalShortcut, shell } from 'electron';
 import path from 'path';
 
 import * as configManager from './hooks/main/configManager';
@@ -36,9 +36,6 @@ const createWindow = async () => {
         show: false,
         useContentSize: true,
         webPreferences: {
-            nodeIntegration: false,
-            contextIsolation: true,
-            enableRemoteModule: false,
             preload: development ? path.join(__dirname, '../../dist/preload.dev.js') : path.join(__dirname, 'preload.prod.js')
         }
     });
@@ -46,9 +43,8 @@ const createWindow = async () => {
     fileManager.setMainWindow(mainWindow);
     configManager.setMainWindow(mainWindow);
 
-    // Install react developer tools when in development
     if(development) {
-        // Workaround till issue is not solved
+        // HACK Till issue is not solved
         // https://github.com/MarshallOfSound/electron-devtools-installer/issues/182
         installExtension(REACT_DEVELOPER_TOOLS, { loadExtensionOptions: { allowFileAccess: true }, forceDownload: false })
             .then(name => console.log(`Added Extension:  ${name}`))
@@ -90,6 +86,10 @@ app.once('window-all-closed', () => {
 });
 
 app.whenReady().then(createWindow).catch(console.log);
+
+app.on('will-quit', () => {
+    globalShortcut.unregisterAll();
+});
 
 app.on('activate', () => {
     if (mainWindow === null) createWindow();

@@ -5,7 +5,7 @@
     "main": "./src/main/index.ts",
     "scripts": {
         "start": "node -r @babel/register ./.erb/scripts/CheckPortInUse.js && yarn build:preload-dev && cross-env yarn start:renderer",
-        "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/BabelRegister .",
+        "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/BabelRegister --trace-warnings .",
         "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js",
         "build": "rimraf dist && concurrently \"yarn build:main\" \"yarn build:renderer\" \"yarn build:preload\"",
         "build:main": "cross-env NODE_ENV=production webpack --config ./.erb/configs/webpack.config.main.prod.babel.js",
@@ -171,7 +171,9 @@
         "webpack-cli": "^4.2.0",
         "webpack-dev-server": "^3.11.0",
         "webpack-merge": "^5.4.0",
-        "yarn-deduplicate": "^3.1.0"
+        "yarn-deduplicate": "^3.1.0",
+        "@types/core-js": "^2.5.4",
+        "@types/source-map-support": "^0.5.3"
     },
     "dependencies": {
         "bbcode-to-react": "^0.2.9",
