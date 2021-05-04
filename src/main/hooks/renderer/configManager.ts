@@ -39,7 +39,7 @@ export async function fetchGameInstances(): Promise<{[key: string]: GameInstance
     return ipcRenderer.invoke(CONFIG_MANAGER_FETCH_GAME_INSTANCES) as Promise<{[key: string]: GameInstance}>;
 }
 
-export async function storeGameInstance(instance: StoreGameInstance): Promise<ErrorableResponse> {
+export async function storeGameInstance(instance: StoreGameInstanceOptions): Promise<ErrorableResponse> {
     return ipcRenderer.invoke(CONFIG_MANAGER_STORE_GAME_INSTANCE, instance) as Promise<ErrorableResponse>;
 }
 

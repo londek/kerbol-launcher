@@ -22,7 +22,7 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_GAME_INSTANCES, async () => {
     return getInstances();
 });
 
-ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGameInstance): Promise<ErrorableResponse> => {
+ipcMain.handle(CONFIG_MANAGER_STORE_GAME_INSTANCE, async (_, instance: StoreGameInstanceOptions): Promise<ErrorableResponse> => {
     console.log(`Received ${CONFIG_MANAGER_STORE_GAME_INSTANCE}`);
     return storeGameInstance(instance);
 });

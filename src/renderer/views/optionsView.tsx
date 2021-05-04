@@ -1,3 +1,5 @@
+import '../css/optionsview.global.scss';
+
 import React, { Component } from 'react';
 
 interface OptionsViewProps {
@@ -16,7 +18,13 @@ class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
     }
 
     render(): JSX.Element {
-        return ( <h4 onClick={this.props.onDeleteInstance}>OptionsPage Hello world</h4> );
+        return (
+            <div id="optionsview__container">
+                <button id="optionsview__remove-instance-btn" className="red-btn" onClick={this.props.onDeleteInstance}>
+                    REMOVE
+                </button>
+            </div>
+        );
     }
 }
 

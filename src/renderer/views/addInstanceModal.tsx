@@ -49,10 +49,10 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
     handleSubmit = (e: FormEvent): void => {
         e.preventDefault();
 
-        const gameData: StoreGameInstance = {
+        const gameData: StoreGameInstanceOptions = {
             label: this.state.label,
-            distro: null,
-            buildId: this.state.path
+            buildId: this.state.path,
+            launchOptions: this.state.opts.split(' ')
         };
 
         kerbolAPI.configManager.storeGameInstance(gameData).then(({ error }) => {

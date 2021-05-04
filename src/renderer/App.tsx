@@ -61,8 +61,7 @@ class App extends Component<unknown, AppState> {
     }
 
     handleInstanceSelect = (id: string): void => {
-        kerbolAPI.configManager.updateDefaultInstance(id).then(({ error }) => {
-            if(error) return console.log(error);
+        kerbolAPI.configManager.updateDefaultInstance(id).then(() => {
             this.setState({ defaultInstance: id });
         });
     }

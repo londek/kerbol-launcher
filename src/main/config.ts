@@ -53,14 +53,7 @@ export function getInstances(): Readonly<KeyedGameInstances> {
     return localConfig.instances;
 }
 
-export function storeGameInstance(instance: StoreGameInstance): ErrorableResponse {
-    // Sanity checks
-    if(instance.label.length > 20) {
-        return { error: 'Label is too long' };
-    } else if(instance.label.length < 3) {
-        return { error: 'Label is too short' };
-    }
-
+export function storeGameInstance(instance: StoreGameInstanceOptions): ErrorableResponse {
     const parsedPath = path.parse(instance.buildId);
     if(parsedPath.name !== 'buildID64' &&
         parsedPath.name !== 'buildID32' &&
@@ -94,7 +87,7 @@ export function storeGameInstance(instance: StoreGameInstance): ErrorableRespons
     }
 
     const instanceId = uuidv4();
-    localConfig.instances[instanceId] = { ...instance, root: parsedPath.dir, launchOptions: [] };
+    localConfig.instances[instanceId] = { ...instance, root: parsedPath.dir };
     localConfig.defaultInstance = instanceId;
 
     try {
