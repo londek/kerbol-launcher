@@ -15,9 +15,10 @@ declare global {
         launchOptions: string[];
     }
 
-    interface StoreGameInstance {
+    interface StoreGameInstanceOptions {
         buildId: string;
         label: string;
+        launchOptions: string[];
     }
 
     interface ErrorableResponse {
