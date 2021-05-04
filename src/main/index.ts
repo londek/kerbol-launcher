@@ -7,14 +7,12 @@ import sourceMapSupport from 'source-map-support';
 import { app, BrowserWindow, globalShortcut, shell } from 'electron';
 import path from 'path';
 
-import * as configManager from './hooks/main/configManager';
+import './hooks/main/configManager';
 import * as fileManager from './hooks/main/fileManager';
 
 const development = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 let mainWindow: BrowserWindow | null = null;
-
-if (!development) sourceMapSupport.install();
 
 const printBanner = () => {
     console.log(`Running as ${app.getName()}`);
@@ -41,9 +39,10 @@ const createWindow = async () => {
     });
 
     fileManager.setMainWindow(mainWindow);
-    configManager.setMainWindow(mainWindow);
 
     if(development) {
+        sourceMapSupport.install();
+
         // HACK Till issue is not solved
         // https://github.com/MarshallOfSound/electron-devtools-installer/issues/182
         installExtension(REACT_DEVELOPER_TOOLS, { loadExtensionOptions: { allowFileAccess: true }, forceDownload: false })

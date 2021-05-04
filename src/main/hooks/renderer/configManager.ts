@@ -8,7 +8,6 @@ const {
     CONFIG_MANAGER_DELETE_GAME_INSTANCE,
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE,
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE,
-    CONFIG_MANAGER_LAUNCH_INSTANCE
 } = IPCActions;
 
 /*
@@ -54,8 +53,4 @@ export async function fetchDefaultInstance(): Promise<string> {
 
 export async function updateDefaultInstance(id: string): Promise<void> {
     ipcRenderer.invoke(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, id) as Promise<ErrorableResponse>;
-}
-
-export async function launchInstance(id: string): Promise<void> {
-    ipcRenderer.invoke(CONFIG_MANAGER_LAUNCH_INSTANCE, id);
 }
