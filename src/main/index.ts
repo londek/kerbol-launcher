@@ -54,7 +54,7 @@ const createWindow = async () => {
         mainWindow.removeMenu();
     }
 
-    mainWindow.loadURL(`file://${development ? path.join(__dirname, '../renderer/index.html') : path.join(__dirname, 'index.html')}`);
+    mainWindow.loadFile(development ? path.join(__dirname, '../renderer/index.html') : path.join(__dirname, 'index.html'));
 
     mainWindow.once('ready-to-show', () => {
         if (!mainWindow) {

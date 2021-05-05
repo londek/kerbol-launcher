@@ -3,10 +3,11 @@ import '../css/addinstance.global.scss';
 import React, { ChangeEvent, Component, FormEvent } from 'react';
 
 import { FaFolderOpen, FaTimes } from 'react-icons/fa';
+import { RouteComponentProps } from 'react-router';
 
-export interface AddInstanceModalProps {
+export interface AddInstanceModalProps extends RouteComponentProps {
     closeable: boolean;
-    onCloseRequest: () => void
+    onWillClose: () => void;
 }
 
 export interface AddInstanceModalState {
@@ -20,7 +21,7 @@ export interface AddInstanceModalState {
 class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModalState> {
     static defaultProps = {
         closeable: true,
-        onCloseRequest: (): void => void 0
+        onWillClose: (): void => void 0
     }
 
     state = {
@@ -39,11 +40,12 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
     }
 
     handleKeybind = (event: KeyboardEvent): void => {
-        if(event.key === 'Escape') this.props.onCloseRequest();
+        if(event.key === 'Escape') this.handleExit();
     }
 
     handleExit = (): void => {
-        this.props.onCloseRequest();
+        this.props.onWillClose();
+        this.props.history.push('/');
     }
 
     handleSubmit = (e: FormEvent): void => {

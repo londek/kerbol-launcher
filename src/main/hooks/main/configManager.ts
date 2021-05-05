@@ -15,6 +15,8 @@ const {
     CONFIG_MANAGER_DELETE_GAME_INSTANCE,
     CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE,
     CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE,
+    CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES,
+    CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE,
 } = IPCActions;
 
 ipcMain.handle(CONFIG_MANAGER_FETCH_GAME_INSTANCES, async () => {
@@ -40,6 +42,16 @@ ipcMain.handle(CONFIG_MANAGER_FETCH_DEFAULT_INSTANCE, async () => {
 ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInstance: string): Promise<ErrorableResponse> => {
     console.log(`Received ${CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE}`);
     return setDefaultInstance(newDefaultInstance);
+});
+
+ipcMain.once(CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES, e => {
+    console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES}`);
+    e.returnValue = getInstances();
+});
+
+ipcMain.once(CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE, e => {
+    console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE}`);
+    e.returnValue = getDefaultInstance();
 });
 
 /*
