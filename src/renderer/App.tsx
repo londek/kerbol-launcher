@@ -8,7 +8,7 @@ import HomeView from './views/homeView';
 import ModsView from './views/modView';
 import OptionsView from './views/optionsView';
 import Navbar from './components/navbar';
-import AddInstanceModal from './views/addInstanceModal';
+import AddInstanceModal from './views/addInstanceView';
 import { createHashHistory, History } from 'history';
 
 interface AppState {
