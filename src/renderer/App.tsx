@@ -12,7 +12,7 @@ import AddInstanceModal from './views/addInstanceView';
 import { createHashHistory, History } from 'history';
 
 interface AppState {
-    instances: {[key: string]: GameInstance};
+    instances: KeyedGameInstances;
     defaultInstance: string;
     history: History;
 }
