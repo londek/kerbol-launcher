@@ -11,7 +11,7 @@ const configPath = path.join(app.getPath('userData'), 'config.json');
 
 function saveConfig(): void {
     fs.writeFileSync(configPath, JSON.stringify(localConfig, null, 4), { encoding: 'utf-8' });
-    console.log(`Saving config on ${configPath}`);
+    console.log(`Saving config in ${configPath}`);
 }
 
 function loadConfig(): void {
