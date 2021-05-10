@@ -17,14 +17,11 @@ class HomeViewFeed extends Component<HomeViewFeedProps> {
         );
     }
 
-    handleOnClick = (e: MouseEvent): void => {
-        e.preventDefault();
-        e.stopPropagation();
-        window.open(this.props.steamNews?.url);
+    handleOnClick = async (): Promise<void> => {
+        if(this.props.steamNews) await kerbolAPI.utilitiesManager.openURL(this.props.steamNews.url);
     }
 
-    handleOnRefreshClick = (e: MouseEvent): void => {
-        e.preventDefault();
+    handleOnRefreshClick = async (e: MouseEvent): Promise<void> => {
         e.stopPropagation();
         this.props.onRefresh();
     }
@@ -38,11 +35,22 @@ class HomeViewFeed extends Component<HomeViewFeedProps> {
 
         const formattedDateString = new Date(date * 1000).toDateString();
 
+        const rowContainerStyle = { display: 'inline-flex' };
+
         return (
             <div id="homeview__feed-container">
-                <label id="homeview__feed-title" onClick={this.handleOnClick}>{title}    <FaSync id="homeview__feed-refresh" onClick={this.handleOnRefreshClick} /></label>
-                <label id="homeview__feed-footer">{formattedDateString}</label>
-                <label id="homeview__feed-tags">{tags.join(' ')}</label>
+                <div style={rowContainerStyle}>
+                    <span id="homeview__feed-title" onClick={this.handleOnClick}>
+                        {title}
+                    </span>
+                    <FaSync id="homeview__feed-refresh" onClick={this.handleOnRefreshClick} />
+                </div>
+                <div style={rowContainerStyle}>
+                    <span id="homeview__feed-footer">{formattedDateString}</span>
+                </div>
+                <div style={rowContainerStyle}>
+                    <span id="homeview__feed-tags">{tags.join(' ')}</span>
+                </div>
 
                 <div id="homeview__feed-horizontal-line" />
 
