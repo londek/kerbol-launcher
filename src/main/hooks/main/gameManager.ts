@@ -14,7 +14,7 @@ const {
 
 
 ipcMain.handle(GAME_MANAGER_RUN_INSTANCE, async (_, id: string): Promise<ErrorableResponse> => {
-    console.log(`Received ${GAME_MANAGER_RUN_INSTANCE}}`);
+    console.log(`Received ${GAME_MANAGER_RUN_INSTANCE}`);
 
     const instance = getInstances()[id];
 
