@@ -13,7 +13,9 @@ class ModsView extends Component<ModsViewProps, ModsViewState> {
         super(props);
     }
     render(): JSX.Element {
-        return ( <h4>Mods are scheduled for mid-late May</h4> );
+        return (
+            <h4>Mods are scheduled for mid-late May</h4>
+        );
     }
 }
 

@@ -15,13 +15,29 @@ interface AppState {
     instances: KeyedGameInstances;
     defaultInstance: string;
     history: History;
+    steamNews: NewsData | null;
 }
 
 class App extends Component<unknown, AppState> {
     state: AppState = {
         instances: kerbolAPI.configManager.fetchInitialGameInstances(),
         defaultInstance: kerbolAPI.configManager.fetchInitialDefaultInstance(),
-        history: createHashHistory()
+        history: createHashHistory(),
+        steamNews: null
+    }
+
+    componentDidMount = async (): Promise<void> => {
+        await this.fetchSteamNews();
+    }
+
+    fetchSteamNews = async (): Promise<void> => {
+        const result = await fetch('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=220200&count=1&format=json');
+        const newsData = await result.json();
+
+        const steamNews = newsData.appnews.newsitems[0] as NewsData;
+
+        this.setState({ steamNews });
+        console.log('Downloaded KSP news from Steam', steamNews);
     }
 
     fetchGameInstances = async (): Promise<KeyedGameInstances> => {
@@ -67,7 +83,9 @@ class App extends Component<unknown, AppState> {
                     <div id="contents">
                         <Switch>
                             <Route exact path="/">
-                                <HomeView selectedInstance={selectedInstance} />
+                                <HomeView selectedInstance={selectedInstance}
+                                    steamNews={this.state.steamNews}
+                                    onFeedRefresh={this.fetchSteamNews} />
                             </Route>
 
                             <Route path="/mods">
@@ -75,8 +93,8 @@ class App extends Component<unknown, AppState> {
                             </Route>
 
                             <Route path="/options">
-                                <OptionsView instanceId={this.state.defaultInstance}
-                                    selectedInstance={this.state.instances[this.state.defaultInstance]}
+                                <OptionsView selectedInstance={this.state.instances[this.state.defaultInstance]}
+                                    instanceId={this.state.defaultInstance}
                                     onDeleteInstance={this.handleDeleteInstance} />
                             </Route>
 

@@ -7,6 +7,8 @@ import {
     storeGameInstance
 } from '../../config';
 
+import isDev from '../../isDev';
+
 import IPCActions from '../actions';
 
 const {
@@ -44,15 +46,28 @@ ipcMain.handle(CONFIG_MANAGER_UPDATE_DEFAULT_INSTANCE, async (_, newDefaultInsta
     return setDefaultInstance(newDefaultInstance);
 });
 
-ipcMain.once(CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES, e => {
-    console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES}`);
-    e.returnValue = getInstances();
-});
+if(isDev()) {
+    ipcMain.on(CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES, e => {
+        console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES}`);
+        e.returnValue = getInstances();
+    });
 
-ipcMain.once(CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE, e => {
-    console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE}`);
-    e.returnValue = getDefaultInstance();
-});
+    ipcMain.on(CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE, e => {
+        console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE}`);
+        e.returnValue = getDefaultInstance();
+    });
+} else {
+    ipcMain.once(CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES, e => {
+        console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_GAME_INSTANCES}`);
+        e.returnValue = getInstances();
+    });
+
+    ipcMain.once(CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE, e => {
+        console.log(`Received ${CONFIG_MANAGER_INITIAL_FETCH_DEFAULT_INSTANCE}`);
+        e.returnValue = getDefaultInstance();
+    });
+}
+
 
 /*
 ipcMain.handle(CONFIG_MANAGER_LAUNCH_INSTANCE, async (_): Promise<ErrorableResponse> => {

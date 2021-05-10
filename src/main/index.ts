@@ -6,12 +6,12 @@ import sourceMapSupport from 'source-map-support';
 
 import { app, BrowserWindow, globalShortcut, shell } from 'electron';
 import path from 'path';
+import isDev from './isDev';
 
 import './hooks/main/configManager';
 import * as fileManager from './hooks/main/fileManager';
 
-const development = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
-
+const development = isDev();
 let mainWindow: BrowserWindow | null = null;
 
 const printBanner = () => {
@@ -74,7 +74,7 @@ const createWindow = async () => {
 
     mainWindow.webContents.setWindowOpenHandler(({ url }: Electron.HandlerDetails) => {
         shell.openExternal(url);
-        return { action: 'allow' };
+        return { action: 'deny' };
     });
 };
 

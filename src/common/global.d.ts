@@ -24,4 +24,13 @@ declare global {
     interface ErrorableResponse {
         error: string | null;
     }
+
+    interface NewsData {
+        title: string;
+        tags: string[];
+        date: number;
+        contents: string;
+        url: string;
+        [key: string]: unknown;
+    }
 }
