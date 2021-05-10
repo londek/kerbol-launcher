@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 interface ModsViewProps {
     selectedInstance: GameInstance;
+    instanceId: string;
 }
 
 interface ModsViewState {

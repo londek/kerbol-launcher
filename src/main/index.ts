@@ -10,6 +10,7 @@ import isDev from './isDev';
 
 import './hooks/main/configManager';
 import * as fileManager from './hooks/main/fileManager';
+import './hooks/main/gameManager';
 import './hooks/main/utilitiesManager';
 
 const development = isDev();

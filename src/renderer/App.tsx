@@ -84,12 +84,14 @@ class App extends Component<unknown, AppState> {
                         <Switch>
                             <Route exact path="/">
                                 <HomeView selectedInstance={selectedInstance}
+                                    instanceId={this.state.defaultInstance}
                                     steamNews={this.state.steamNews}
                                     onFeedRefresh={this.fetchSteamNews} />
                             </Route>
 
                             <Route path="/mods">
-                                <ModsView selectedInstance={selectedInstance} />
+                                <ModsView selectedInstance={selectedInstance}
+                                    instanceId={this.state.defaultInstance} />
                             </Route>
 
                             <Route path="/options">

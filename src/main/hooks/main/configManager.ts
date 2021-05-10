@@ -67,34 +67,3 @@ if(isDev()) {
         e.returnValue = getDefaultInstance();
     });
 }
-
-
-/*
-ipcMain.handle(CONFIG_MANAGER_LAUNCH_INSTANCE, async (_): Promise<ErrorableResponse> => {
-    console.log(`Received ${CONFIG_MANAGER_LAUNCH_INSTANCE}`);
-
-    return { error: 'Not implemented yet' };
-
-
-    if(!mainWindow) return { error: 'Main window in config manager has not been initialized' };
-
-    if(!id || !localConfig.instances[id]) return { error: 'Could not find instance with this ID' };
-
-    const instance: GameInstance = localConfig.instances[id];
-
-    mainWindow.hide();
-
-    childProcess.execFile(path.join(instance.root, 'KSP_x64.exe'), (error, stdout, stderr) => {
-        if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.error(`stderr: ${stderr}`);
-
-        mainWindow.show();
-    });
-
-    return { error: null };
-});
-*/

@@ -5,6 +5,7 @@ import HomeViewFeed from '../components/homeViewFeed';
 
 interface HomeViewProps {
     selectedInstance: GameInstance;
+    instanceId: string;
     steamNews: NewsData | null;
     onFeedRefresh: () => void;
 }
@@ -20,7 +21,7 @@ class HomeView extends Component<HomeViewProps, HomeViewState> {
                 <HomeViewFeed steamNews={this.props.steamNews}
                     onRefresh={this.props.onFeedRefresh} />
                 <footer id="homeview__footer">
-                    <button id="homeview__footer-play-btn" className="green-btn">Play</button>
+                    <button id="homeview__footer-play-btn" className="green-btn" onClick={kerbolAPI.gameManager.runInstance(this.props.instanceId)}>Play</button>
                 </footer>
             </React.Fragment>
         );
