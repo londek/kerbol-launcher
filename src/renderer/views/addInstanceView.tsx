@@ -5,12 +5,12 @@ import React, { ChangeEvent, Component, FormEvent } from 'react';
 import { FaFolderOpen, FaTimes } from 'react-icons/fa';
 import { RouteComponentProps } from 'react-router';
 
-export interface AddInstanceModalProps extends RouteComponentProps {
+interface AddInstanceModalProps extends RouteComponentProps {
     closeable: boolean;
     onWillClose: () => void;
 }
 
-export interface AddInstanceModalState {
+interface AddInstanceModalState {
     label: string;
     path: string;
     opts: string;

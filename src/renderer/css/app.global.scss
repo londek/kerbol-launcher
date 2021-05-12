@@ -11,13 +11,13 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-    background: $dark;        /* color of the tracking area */
+    background: $dark800;        /* color of the tracking area */
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: $darker;    /* color of the scroll thumb */
+    background-color: $dark900;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid $darker;  /* creates padding around scroll thumb */
+    border: 3px solid $dark900;  /* creates padding around scroll thumb */
 }
 
 * {
@@ -37,7 +37,7 @@ a {
 }
 
 a:-webkit-any-link {
-    color:$lightBlue;
+    color: $lightBlue;
 }
 
 input {
@@ -45,7 +45,7 @@ input {
 }
 
 #app {
-	background-color: $gray;
+	background-color: $dark700;
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -71,7 +71,7 @@ input {
 
 .green-btn {
 	border: 0;
-	background-color: $lightGreen;
+	background-color: $accentDark;
 	color: white;
 	font-family: 'Lato', sans-serif;
     font-size: 16px;

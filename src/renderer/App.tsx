@@ -10,6 +10,7 @@ import OptionsView from './views/optionsView';
 import Navbar from './components/navbar';
 import AddInstanceModal from './views/addInstanceView';
 import { createHashHistory, History } from 'history';
+import DebugView from './views/debugView';
 
 interface AppState {
     instances: KeyedGameInstances;
@@ -98,6 +99,10 @@ class App extends Component<unknown, AppState> {
                                 <OptionsView selectedInstance={this.state.instances[this.state.defaultInstance]}
                                     instanceId={this.state.defaultInstance}
                                     onDeleteInstance={this.handleDeleteInstance} />
+                            </Route>
+
+                            <Route path="/debug">
+                                <DebugView />
                             </Route>
 
                             <Route path="/addInstance" render={

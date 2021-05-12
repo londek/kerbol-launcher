@@ -21,6 +21,13 @@ class Navbar extends Component {
                     <label id="navbar-tab-text">OPTIONS</label>
                     <div id="navbar-tab-line" />
                 </NavLink>
+
+                { kerbolAPI.isDev() &&
+                    <NavLink to="/debug" id="navbar-tab-container">
+                        <label id="navbar-tab-text" className="debug">DEBUG</label>
+                        <div id="navbar-tab-line" />
+                    </NavLink>
+                }
             </nav>
         );
     }

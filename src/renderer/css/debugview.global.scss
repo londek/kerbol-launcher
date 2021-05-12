@@ -1,0 +1,59 @@
+@import "colors";
+
+#dev__container {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}
+
+.dev__colorBox {
+    flex-grow: 1;
+}
+
+#dev__color1 {
+    background-color: $dark100;
+}
+
+#dev__color2 {
+    background-color: $dark200;
+}
+
+#dev__color3 {
+    background-color: $dark300;
+}
+
+#dev__color4 {
+    background-color: $dark400;
+}
+
+#dev__color5 {
+    background-color: $dark500;
+}
+
+#dev__color6 {
+    background-color: $dark600;
+}
+
+#dev__color7 {
+    background-color: $dark700;
+}
+
+#dev__color8 {
+    background-color: $dark800;
+}
+
+#dev__color9 {
+    background-color: $dark900;
+}
+
+#dev__accentLight {
+    background-color: $accentLight;
+}
+
+#dev__accent {
+    background-color: $accent;
+}
+
+#dev__accentDark {
+    background-color: $accentDark;
+}

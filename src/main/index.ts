@@ -30,7 +30,7 @@ const createWindow = async () => {
         title: 'Kerbol Launcher loading...',
         width: development ? 1512 : 1024, // Add space for devtools when in development
         height: development ? 824 : 576, // Add space for devtools when in development,
-        minWidth: 1024,
+        minWidth: development ? 1160 : 1024,
         minHeight: 576,
         center: true,
         show: false,

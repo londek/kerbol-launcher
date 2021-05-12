@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $dark;
+    background-color: $dark800;
     z-index: 10;
 }
 
@@ -48,7 +48,7 @@
     box-sizing: border-box;
     color: white;
     outline: none;
-    background-color: $darker;
+    background-color: $dark900;
     border: 0;
     padding-left: 20px;
     height: 40px;
@@ -96,7 +96,7 @@
 #modal__add-instance-game-path-btn {
     width: 40px;
     height: 40px;
-    background-color: $darker;
+    background-color: $dark900;
     vertical-align: middle;
     color:white;
     outline: none;
