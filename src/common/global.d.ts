@@ -1,4 +1,4 @@
-export {};
+export {}
 
 declare global {
     type KeyedGameInstances = { [key: string]: GameInstance };

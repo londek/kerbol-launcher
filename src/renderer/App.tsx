@@ -1,16 +1,16 @@
-import './css/app.global.scss';
+import './css/app.global.scss'
 
-import { Redirect, Route, Router, Switch } from 'react-router-dom';
-import React, { Component } from 'react';
+import { Redirect, Route, Router, Switch } from 'react-router-dom'
+import React, { Component } from 'react'
 
-import Sidebar from './components/sidebar';
-import HomeView from './views/homeView';
-import ModsView from './views/modView';
-import OptionsView from './views/optionsView';
-import Navbar from './components/navbar';
-import AddInstanceModal from './views/addInstanceView';
-import { createHashHistory, History } from 'history';
-import DebugView from './views/debugView';
+import Sidebar from './components/sidebar'
+import HomeView from './views/homeView'
+import ModsView from './views/modView'
+import OptionsView from './views/optionsView'
+import Navbar from './components/navbar'
+import AddInstanceModal from './views/addInstanceView'
+import { createHashHistory, History } from 'history'
+import DebugView from './views/debugView'
 
 interface AppState {
     instances: KeyedGameInstances;
@@ -28,49 +28,49 @@ class App extends Component<unknown, AppState> {
     }
 
     componentDidMount = async (): Promise<void> => {
-        await this.fetchSteamNews();
+        await this.fetchSteamNews()
     }
 
     fetchSteamNews = async (): Promise<void> => {
-        const result = await fetch('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=220200&count=1&format=json');
-        const newsData = await result.json();
+        const result = await fetch('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=220200&count=1&format=json')
+        const newsData = await result.json()
 
-        const steamNews = newsData.appnews.newsitems[0] as NewsData;
+        const steamNews = newsData.appnews.newsitems[0] as NewsData
 
-        this.setState({ steamNews });
-        console.log('Downloaded KSP news from Steam', steamNews);
+        this.setState({ steamNews })
+        console.log('Downloaded KSP news from Steam', steamNews)
     }
 
     fetchGameInstances = async (): Promise<KeyedGameInstances> => {
-        const instances = await kerbolAPI.configManager.fetchGameInstances();
-        this.setState({ instances });
+        const instances = await kerbolAPI.configManager.fetchGameInstances()
+        this.setState({ instances })
 
-        const defaultInstance = await kerbolAPI.configManager.fetchDefaultInstance();
-        this.setState({ defaultInstance });
-        return instances;
+        const defaultInstance = await kerbolAPI.configManager.fetchDefaultInstance()
+        this.setState({ defaultInstance })
+        return instances
     }
 
     handleDeleteInstance = async (): Promise<void> => {
-        const { error } = await kerbolAPI.configManager.deleteGameInstance(this.state.defaultInstance);
-        if(error) return console.error('Error while deleting game instance', error);
+        const { error } = await kerbolAPI.configManager.deleteGameInstance(this.state.defaultInstance)
+        if(error) return console.error('Error while deleting game instance', error)
 
-        this.fetchGameInstances();
+        this.fetchGameInstances()
     }
 
     handleCloseRequest = async (): Promise<void> => {
-        await this.fetchGameInstances();
+        await this.fetchGameInstances()
     }
 
     handleInstanceSelect = (id: string): void => {
         kerbolAPI.configManager.updateDefaultInstance(id).then(() => {
-            this.setState({ defaultInstance: id });
-        });
+            this.setState({ defaultInstance: id })
+        })
     }
 
     render(): JSX.Element {
-        const selectedInstance = this.state.instances[this.state.defaultInstance];
+        const selectedInstance = this.state.instances[this.state.defaultInstance]
 
-        if(Object.keys(this.state.instances).length === 0) this.state.history.replace('/addInstanceSplash');
+        if(Object.keys(this.state.instances).length === 0) this.state.history.replace('/addInstanceSplash')
 
         return (
             <Router history={this.state.history}>
@@ -117,8 +117,8 @@ class App extends Component<unknown, AppState> {
                     </div>
                 </div>
             </Router>
-        );
+        )
     }
 }
 
-export default App;
+export default App

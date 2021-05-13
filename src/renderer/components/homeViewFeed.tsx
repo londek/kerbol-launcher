@@ -1,7 +1,7 @@
 // @ts-expect-error: It has no typings ;/
-import parser from 'bbcode-to-react';
-import React, { Component, MouseEvent } from 'react';
-import { FaSync } from 'react-icons/fa';
+import parser from 'bbcode-to-react'
+import React, { Component, MouseEvent } from 'react'
+import { FaSync } from 'react-icons/fa'
 
 interface HomeViewFeedProps {
     steamNews: NewsData | null;
@@ -14,28 +14,28 @@ class HomeViewFeed extends Component<HomeViewFeedProps> {
             <div id="homeview__feed-wrapper">
                 {this.formatFeed()}
             </div>
-        );
+        )
     }
 
     handleOnClick = async (): Promise<void> => {
-        if(this.props.steamNews) await kerbolAPI.utilitiesManager.openURL(this.props.steamNews.url);
+        if(this.props.steamNews) await kerbolAPI.utilitiesManager.openURL(this.props.steamNews.url)
     }
 
     handleOnRefreshClick = async (e: MouseEvent): Promise<void> => {
-        e.stopPropagation();
-        this.props.onRefresh();
+        e.stopPropagation()
+        this.props.onRefresh()
     }
 
     formatFeed = (): JSX.Element => {
         if(!this.props.steamNews) {
-            return <h4 id="homeview__feed-loading"></h4>;
+            return <h4 id="homeview__feed-loading"></h4>
         }
 
-        const { title, date, contents, tags } = this.props.steamNews;
+        const { title, date, contents, tags } = this.props.steamNews
 
-        const formattedDateString = new Date(date * 1000).toDateString();
+        const formattedDateString = new Date(date * 1000).toDateString()
 
-        const rowContainerStyle = { display: 'inline-flex' };
+        const rowContainerStyle = { display: 'inline-flex' }
 
         return (
             <div id="homeview__feed-container">
@@ -60,8 +60,8 @@ class HomeViewFeed extends Component<HomeViewFeedProps> {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default HomeViewFeed;
+export default HomeViewFeed

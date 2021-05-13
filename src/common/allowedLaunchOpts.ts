@@ -10,4 +10,4 @@ export default [
     '-force-vulkan',
     '-force-wayland',
     '-nolog'
-];
+]

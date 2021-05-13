@@ -1,9 +1,9 @@
-import '../css/addinstance.global.scss';
+import '../css/addinstance.global.scss'
 
-import React, { ChangeEvent, Component, FormEvent } from 'react';
+import React, { ChangeEvent, Component, FormEvent } from 'react'
 
-import { FaFolderOpen, FaTimes } from 'react-icons/fa';
-import { RouteComponentProps } from 'react-router';
+import { FaFolderOpen, FaTimes } from 'react-icons/fa'
+import { RouteComponentProps } from 'react-router'
 
 interface AddInstanceModalProps extends RouteComponentProps {
     closeable: boolean;
@@ -32,55 +32,55 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
     }
 
     componentDidMount(): void {
-        window.addEventListener('keydown', this.handleKeybind);
+        window.addEventListener('keydown', this.handleKeybind)
     }
 
     componentWillUnmount(): void {
-        window.removeEventListener('keydown', this.handleKeybind);
+        window.removeEventListener('keydown', this.handleKeybind)
     }
 
     handleKeybind = (event: KeyboardEvent): void => {
-        if(event.key === 'Escape') this.handleExit();
+        if(event.key === 'Escape') this.handleExit()
     }
 
     handleExit = (): void => {
-        this.props.onWillClose();
-        this.props.history.push('/');
+        this.props.onWillClose()
+        this.props.history.push('/')
     }
 
     handleSubmit = (e: FormEvent): void => {
-        e.preventDefault();
+        e.preventDefault()
 
         const gameData: StoreGameInstanceOptions = {
             label: this.state.label,
             buildId: this.state.path,
             launchOptions: this.state.opts.split(' ')
-        };
+        }
 
         kerbolAPI.configManager.storeGameInstance(gameData).then(({ error }) => {
             if(error) {
-                this.setState({ error });
-                return;
+                this.setState({ error })
+                return
             }
 
-            this.handleExit();
-        });
+            this.handleExit()
+        })
     }
 
     handleExplorerWindowOpen = (): void => {
         kerbolAPI.fileManager.openFileDialog([{name: 'buildID files', extensions: ['txt']}]).then(({ canceled, filePaths }) => {
             if(canceled || filePaths.length == 0) {
-                return;
+                return
             }
 
-            const [ path ] = filePaths;
-            this.setState({ path });
-        });
+            const [ path ] = filePaths
+            this.setState({ path })
+        })
     }
 
     handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+        const { name, value } = e.target
+        this.setState({ [name]: value })
     }
 
     render(): JSX.Element {
@@ -134,8 +134,8 @@ class AddInstanceModal extends Component<AddInstanceModalProps, AddInstanceModal
                     <button type="submit" id="modal__add-instance-input-submit-btn" className="green-btn">ADD INSTANCE</button>
                 </form>
             </div>
-        );
+        )
     }
 }
 
-export default AddInstanceModal;
+export default AddInstanceModal

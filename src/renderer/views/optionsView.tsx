@@ -1,6 +1,6 @@
-import '../css/optionsview.global.scss';
+import '../css/optionsview.global.scss'
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 interface OptionsViewProps {
     selectedInstance: GameInstance;
@@ -14,7 +14,7 @@ interface OptionsViewState {
 
 class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
     constructor(props: OptionsViewProps) {
-        super(props);
+        super(props)
     }
 
     render(): JSX.Element {
@@ -24,8 +24,8 @@ class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
                     REMOVE
                 </button>
             </div>
-        );
+        )
     }
 }
 
-export default OptionsView;
+export default OptionsView

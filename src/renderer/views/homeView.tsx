@@ -1,7 +1,7 @@
-import '../css/homeview.global.scss';
+import '../css/homeview.global.scss'
 
-import React, { Component } from 'react';
-import HomeViewFeed from '../components/homeViewFeed';
+import React, { Component } from 'react'
+import HomeViewFeed from '../components/homeViewFeed'
 
 interface HomeViewProps {
     selectedInstance: GameInstance;
@@ -24,8 +24,8 @@ class HomeView extends Component<HomeViewProps, HomeViewState> {
                     <button id="homeview__footer-play-btn" className="green-btn" onClick={() => kerbolAPI.gameManager.runInstance(this.props.instanceId)}>Play</button>
                 </footer>
             </React.Fragment>
-        );
+        )
     }
 }
 
-export default HomeView;
+export default HomeView

@@ -1,6 +1,6 @@
-import '../css/debugview.global.scss';
+import '../css/debugview.global.scss'
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class DebugView extends Component {
     render(): JSX.Element {
@@ -19,8 +19,8 @@ class DebugView extends Component {
                 <div id="dev__accent" className="dev__colorBox"></div>
                 <div id="dev__accentDark" className="dev__colorBox"></div>
             </div>
-        );
+        )
     }
 }
 
-export default DebugView;
+export default DebugView

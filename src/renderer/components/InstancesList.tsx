@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import InstanceItem, { IInstanceItem } from './instanceItem';
+import React, { Component } from 'react'
+import InstanceItem, { IInstanceItem } from './instanceItem'
 
 export interface InstancesListProps {
     instances: IInstanceItem[];
@@ -22,14 +22,14 @@ class InstancesList extends Component<InstancesListProps> {
             <div id="instances-container">
                 {this.formatInstances()}
             </div>
-        );
+        )
     }
 
     formatInstances = (): JSX.Element[] => {
-        const { instances } = this.props;
+        const { instances } = this.props
 
-        if(instances.length === 0) return [ this.noInstancesComponent ];
-        return instances.map(instance => this.formatInstance(instance));
+        if(instances.length === 0) return [ this.noInstancesComponent ]
+        return instances.map(instance => this.formatInstance(instance))
     };
 
     formatInstance = ({label, modpack, active, instanceId}: IInstanceItem): JSX.Element => {
@@ -39,8 +39,8 @@ class InstancesList extends Component<InstancesListProps> {
             active={active}
             instanceId={instanceId}
             onSelect={this.props.onSelect}
-        />;
+        />
     };
 }
 
-export default InstancesList;
+export default InstancesList

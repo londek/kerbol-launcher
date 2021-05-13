@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 export interface IInstanceItem {
     label: string;
@@ -21,8 +21,8 @@ class InstanceItem extends Component<InstanceItemProps> {
                     <label id="sidebar-instance-modpack">Modpack: {this.props.modpack || 'None'}</label>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default InstanceItem;
+export default InstanceItem

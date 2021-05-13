@@ -1,11 +1,11 @@
-import * as ipcRenderer from './ipcProxy';
-import { FileFilter, OpenDialogReturnValue } from 'electron';
+import * as ipcRenderer from './ipcProxy'
+import { FileFilter, OpenDialogReturnValue } from 'electron'
 
-import IPCActions from '../actions';
+import IPCActions from '../actions'
 
 const {
     FILE_MANAGER_OPEN_FILE_DIALOG
-} = IPCActions;
+} = IPCActions
 
 /*
 // Sync
@@ -17,5 +17,5 @@ export function openFileDialogSync(filters?: FileFilter[], properties?: string[]
 // Async
 
 export async function openFileDialog(filters?: FileFilter[], properties?: string[]): Promise<OpenDialogReturnValue> {
-    return ipcRenderer.invoke(FILE_MANAGER_OPEN_FILE_DIALOG, { filters, properties }) as Promise<OpenDialogReturnValue>;
+    return ipcRenderer.invoke(FILE_MANAGER_OPEN_FILE_DIALOG, { filters, properties }) as Promise<OpenDialogReturnValue>
 }

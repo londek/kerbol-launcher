@@ -19,10 +19,10 @@ const IPCActions: IPCActions = {
     GAME_MANAGER_RUN_INSTANCE: '',
 
     UTILITY_OPEN_URL: ''
-};
-
-for (const key in IPCActions) {
-    IPCActions[key] = 'LAUNCHER_' + key;
 }
 
-export default IPCActions;
+for (const key in IPCActions) {
+    IPCActions[key] = 'LAUNCHER_' + key
+}
+
+export default IPCActions
