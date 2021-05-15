@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ES2018",
+        "target": "ES2020",
         "module": "CommonJS",
         "lib": ["dom", "esnext"],
         "declaration": true,
@@ -10,11 +10,13 @@
         "strict": true,
         "pretty": true,
         "sourceMap": true,
+
         /* Additional Checks */
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
+
         /* Module Resolution Options */
         "moduleResolution": "node",
         "esModuleInterop": true,

@@ -1,10 +1,10 @@
-export {}
+export {};
 
 declare global {
     type KeyedGameInstances = { [key: string]: GameInstance };
 
     interface Config {
-        instances:       KeyedGameInstances;
+        instances: KeyedGameInstances;
         defaultInstance: string;
     }
 

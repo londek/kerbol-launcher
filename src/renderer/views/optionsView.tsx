@@ -1,6 +1,7 @@
-import '../css/optionsview.global.scss'
+/* eslint-disable @typescript-eslint/no-empty-interface */
+import "../css/optionsview.global.scss";
 
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 interface OptionsViewProps {
     selectedInstance: GameInstance;
@@ -8,24 +9,27 @@ interface OptionsViewProps {
     onDeleteInstance: () => void;
 }
 
-interface OptionsViewState {
-
-}
+interface OptionsViewState {}
 
 class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
     constructor(props: OptionsViewProps) {
-        super(props)
+        super(props);
     }
 
     render(): JSX.Element {
         return (
             <div id="optionsview__container">
-                <button id="optionsview__remove-instance-btn" className="red-btn" onClick={this.props.onDeleteInstance}>
+                <input />
+                <button
+                    id="optionsview__remove-instance-btn"
+                    className="red-btn"
+                    onClick={this.props.onDeleteInstance}
+                >
                     REMOVE
                 </button>
             </div>
-        )
+        );
     }
 }
 
-export default OptionsView
+export default OptionsView;

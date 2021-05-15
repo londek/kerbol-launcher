@@ -1,7 +1,7 @@
-import '../css/navbar.global.scss'
+import "../css/navbar.global.scss";
 
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Navbar extends Component {
     render(): JSX.Element {
@@ -22,15 +22,17 @@ class Navbar extends Component {
                     <div id="navbar-tab-line" />
                 </NavLink>
 
-                { kerbolAPI.isDev() &&
+                {kerbolAPI.isDev() && (
                     <NavLink to="/debug" id="navbar-tab-container">
-                        <label id="navbar-tab-text" className="debug">DEBUG</label>
+                        <label id="navbar-tab-text" className="debug">
+                            DEBUG
+                        </label>
                         <div id="navbar-tab-line" />
                     </NavLink>
-                }
+                )}
             </nav>
-        )
+        );
     }
 }
 
-export default Navbar
+export default Navbar;

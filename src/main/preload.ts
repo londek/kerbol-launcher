@@ -1,12 +1,14 @@
-import { contextBridge } from 'electron'
+import { contextBridge } from "electron";
 
-import isDev from './isDev'
+import isDev from "./isDev";
 
-import * as configManager from './hooks/renderer/configManager'
-import * as fileManager from './hooks/renderer/fileManager'
-import * as gameManager from './hooks/renderer/gameManager'
-import * as utilitiesManager from './hooks/renderer/utilitiesManager'
+import * as configManager from "./hooks/renderer/configManager";
+import * as fileManager from "./hooks/renderer/fileManager";
+import * as gameManager from "./hooks/renderer/gameManager";
+import * as utilitiesManager from "./hooks/renderer/utilitiesManager";
 
+// I don't really like this solution
+// Looking forward for somebody to make PR changing typings
 declare global {
     interface IkerbolAPI {
         configManager: typeof configManager;
@@ -22,7 +24,7 @@ const kerbolAPI: IkerbolAPI = {
     fileManager,
     gameManager,
     utilitiesManager,
-    isDev
-}
+    isDev,
+};
 
-contextBridge.exposeInMainWorld('kerbolAPI', kerbolAPI)
+contextBridge.exposeInMainWorld("kerbolAPI", kerbolAPI);
