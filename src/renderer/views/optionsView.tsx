@@ -11,19 +11,23 @@ interface OptionsViewProps {
 
 interface OptionsViewState {}
 
+// eslint-disable-next-line react/prefer-stateless-function
 class OptionsView extends Component<OptionsViewProps, OptionsViewState> {
     constructor(props: OptionsViewProps) {
         super(props);
     }
 
     render(): JSX.Element {
+        const { onDeleteInstance } = this.props;
+
         return (
             <div id="optionsview__container">
                 <input />
                 <button
+                    type="button"
                     id="optionsview__remove-instance-btn"
                     className="red-btn"
-                    onClick={this.props.onDeleteInstance}
+                    onClick={onDeleteInstance}
                 >
                     REMOVE
                 </button>

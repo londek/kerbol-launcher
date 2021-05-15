@@ -9,26 +9,27 @@ interface HomeViewFeedProps {
 }
 
 class HomeViewFeed extends Component<HomeViewFeedProps> {
-    render(): JSX.Element {
-        return <div id="homeview__feed-wrapper">{this.formatFeed()}</div>;
-    }
-
     handleOnClick = async (): Promise<void> => {
-        if (this.props.steamNews)
-            await kerbolAPI.utilitiesManager.openURL(this.props.steamNews.url);
+        const { steamNews } = this.props;
+
+        if (steamNews) await kerbolAPI.utilitiesManager.openURL(steamNews.url);
     };
 
     handleOnRefreshClick = async (e: MouseEvent): Promise<void> => {
+        const { onRefresh } = this.props;
+
         e.stopPropagation();
-        this.props.onRefresh();
+        onRefresh();
     };
 
     formatFeed = (): JSX.Element => {
-        if (!this.props.steamNews) {
-            return <h4 id="homeview__feed-loading"></h4>;
+        const { steamNews } = this.props;
+
+        if (!steamNews) {
+            return <h4 id="homeview__feed-loading" />;
         }
 
-        const { title, date, contents, tags } = this.props.steamNews;
+        const { title, date, contents, tags } = steamNews;
 
         const formattedDateString = new Date(date * 1000).toDateString();
 
@@ -69,6 +70,10 @@ class HomeViewFeed extends Component<HomeViewFeedProps> {
             </div>
         );
     };
+
+    render(): JSX.Element {
+        return <div id="homeview__feed-wrapper">{this.formatFeed()}</div>;
+    }
 }
 
 export default HomeViewFeed;

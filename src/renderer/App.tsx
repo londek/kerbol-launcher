@@ -8,7 +8,7 @@ import HomeView from "./views/HomeView";
 import ModsView from "./views/ModView";
 import OptionsView from "./views/OptionsView";
 import Navbar from "./components/Navbar";
-import AddInstanceModal from "./views/AddInstanceView";
+import AddInstanceView from "./views/AddInstanceView";
 import { createHashHistory, History } from "history";
 import DebugView from "./views/DebugView";
 
@@ -59,8 +59,10 @@ class App extends Component<unknown, AppState> {
     };
 
     handleDeleteInstance = async (): Promise<void> => {
+        const { defaultInstance } = this.state;
+
         const { error } = await kerbolAPI.configManager.deleteGameInstance(
-            this.state.defaultInstance
+            defaultInstance
         );
         if (error)
             return console.error("Error while deleting game instance", error);
@@ -79,20 +81,19 @@ class App extends Component<unknown, AppState> {
     };
 
     render(): JSX.Element {
-        const selectedInstance =
-            this.state.instances[this.state.defaultInstance];
+        const { instances, defaultInstance, history, steamNews } = this.state;
 
-        if (Object.keys(this.state.instances).length === 0)
-            this.state.history.replace("/addInstanceSplash");
+        const selectedInstance = instances[defaultInstance];
+
+        if (Object.keys(instances).length === 0)
+            history.replace("/addInstanceSplash");
 
         return (
-            <Router history={this.state.history}>
+            <Router history={history}>
                 <Sidebar
-                    instances={this.state.instances}
-                    selectedInstance={this.state.defaultInstance}
-                    onAddInstanceModal={() =>
-                        this.state.history.push("/addInstance")
-                    }
+                    instances={instances}
+                    selectedInstance={defaultInstance}
+                    onAddInstanceModal={() => history.push("/addInstance")}
                     onInstanceSelect={this.handleInstanceSelect}
                 />
 
@@ -103,8 +104,8 @@ class App extends Component<unknown, AppState> {
                             <Route exact path="/">
                                 <HomeView
                                     selectedInstance={selectedInstance}
-                                    instanceId={this.state.defaultInstance}
-                                    steamNews={this.state.steamNews}
+                                    instanceId={defaultInstance}
+                                    steamNews={steamNews}
                                     onFeedRefresh={this.fetchSteamNews}
                                 />
                             </Route>
@@ -112,18 +113,16 @@ class App extends Component<unknown, AppState> {
                             <Route path="/mods">
                                 <ModsView
                                     selectedInstance={selectedInstance}
-                                    instanceId={this.state.defaultInstance}
+                                    instanceId={defaultInstance}
                                 />
                             </Route>
 
                             <Route path="/options">
                                 <OptionsView
                                     selectedInstance={
-                                        this.state.instances[
-                                            this.state.defaultInstance
-                                        ]
+                                        instances[defaultInstance]
                                     }
-                                    instanceId={this.state.defaultInstance}
+                                    instanceId={defaultInstance}
                                     onDeleteInstance={this.handleDeleteInstance}
                                 />
                             </Route>
@@ -135,7 +134,7 @@ class App extends Component<unknown, AppState> {
                             <Route
                                 path="/addInstance"
                                 render={(props) => (
-                                    <AddInstanceModal
+                                    <AddInstanceView
                                         {...props}
                                         onWillClose={this.fetchGameInstances}
                                     />
@@ -144,7 +143,7 @@ class App extends Component<unknown, AppState> {
                             <Route
                                 path="/addInstanceSplash"
                                 render={(props) => (
-                                    <AddInstanceModal
+                                    <AddInstanceView
                                         {...props}
                                         onWillClose={this.fetchGameInstances}
                                         closeable={false}

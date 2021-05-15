@@ -17,9 +17,25 @@ class InstancesList extends Component<InstancesListProps> {
         </div>
     );
 
-    render(): JSX.Element {
-        return <div id="instances-container">{this.formatInstances()}</div>;
-    }
+    formatInstance = ({
+        label,
+        modpack,
+        active,
+        instanceId,
+    }: IInstanceItem): JSX.Element => {
+        const { onSelect } = this.props;
+
+        return (
+            <InstanceItem
+                key={instanceId}
+                label={label}
+                modpack={modpack}
+                active={active}
+                instanceId={instanceId}
+                onSelect={onSelect}
+            />
+        );
+    };
 
     formatInstances = (): JSX.Element[] => {
         const { instances } = this.props;
@@ -28,23 +44,9 @@ class InstancesList extends Component<InstancesListProps> {
         return instances.map((instance) => this.formatInstance(instance));
     };
 
-    formatInstance = ({
-        label,
-        modpack,
-        active,
-        instanceId,
-    }: IInstanceItem): JSX.Element => {
-        return (
-            <InstanceItem
-                key={instanceId}
-                label={label}
-                modpack={modpack}
-                active={active}
-                instanceId={instanceId}
-                onSelect={this.props.onSelect}
-            />
-        );
-    };
+    render(): JSX.Element {
+        return <div id="instances-container">{this.formatInstances()}</div>;
+    }
 }
 
 export default InstancesList;

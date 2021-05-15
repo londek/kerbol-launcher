@@ -5,12 +5,12 @@ import React, { ChangeEvent, Component, FormEvent } from "react";
 import { FaFolderOpen, FaTimes } from "react-icons/fa";
 import { RouteComponentProps } from "react-router";
 
-interface AddInstanceModalProps extends RouteComponentProps {
+interface AddInstanceViewProps extends RouteComponentProps {
     closeable: boolean;
     onWillClose: () => void;
 }
 
-interface AddInstanceModalState {
+interface AddInstanceViewState {
     label: string;
     path: string;
     opts: string;
@@ -18,9 +18,9 @@ interface AddInstanceModalState {
     [key: string]: string;
 }
 
-class AddInstanceModal extends Component<
-    AddInstanceModalProps,
-    AddInstanceModalState
+class AddInstanceView extends Component<
+    AddInstanceViewProps,
+    AddInstanceViewState
 > {
     static defaultProps = {
         closeable: true,
@@ -47,17 +47,21 @@ class AddInstanceModal extends Component<
     };
 
     handleExit = (): void => {
-        this.props.onWillClose();
-        this.props.history.push("/");
+        const { onWillClose, history } = this.props;
+
+        onWillClose();
+        history.push("/");
     };
 
     handleSubmit = (e: FormEvent): void => {
         e.preventDefault();
 
+        const { label, path, opts } = this.state;
+
         const gameData: StoreGameInstanceOptions = {
-            label: this.state.label,
-            buildId: this.state.path,
-            launchOptions: this.state.opts.split(" "),
+            label,
+            buildId: path,
+            launchOptions: opts.split(" "),
         };
 
         kerbolAPI.configManager
@@ -91,10 +95,14 @@ class AddInstanceModal extends Component<
     };
 
     render(): JSX.Element {
+        const { closeable } = this.props;
+        const { label, path, opts, error } = this.state;
+
         return (
             <div id="modal__add-instance">
-                {this.props.closeable && (
+                {closeable && (
                     <button
+                        type="button"
                         id="modal__add-instance-exit-btn"
                         onClick={this.handleExit}
                     >
@@ -123,7 +131,7 @@ class AddInstanceModal extends Component<
                             type="text"
                             placeholder="Name this instance"
                             maxLength={14}
-                            value={this.state.label}
+                            value={label}
                             onChange={this.handleInputChange}
                         />
                         <br />
@@ -141,7 +149,7 @@ class AddInstanceModal extends Component<
                                 name="path"
                                 type="text"
                                 placeholder="C:\Sth\Kerbal Space Program\buildID64.txt"
-                                value={this.state.path}
+                                value={path}
                                 onChange={this.handleInputChange}
                             />
                             <button
@@ -165,15 +173,13 @@ class AddInstanceModal extends Component<
                             name="opts"
                             type="text"
                             placeholder="Optional"
-                            value={this.state.opts}
+                            value={opts}
                             onChange={this.handleInputChange}
                         />
                         <br />
                     </div>
 
-                    <label id="modal__add-instance-error-label">
-                        {this.state.error}
-                    </label>
+                    <label id="modal__add-instance-error-label">{error}</label>
 
                     <button
                         type="submit"
@@ -188,4 +194,4 @@ class AddInstanceModal extends Component<
     }
 }
 
-export default AddInstanceModal;
+export default AddInstanceView;

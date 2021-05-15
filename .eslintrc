@@ -8,14 +8,43 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "prettier"
+        "prettier",
+        "eslint-config-airbnb/rules/react"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
-    "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks"],
+    "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "react",
+        "react-hooks"
+    ],
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-filename-extension": "off",
+        "react/jsx-curly-newline": "off",
+        "react/static-property-placement": "off",
+        "react/state-in-constructor": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
+        "react/jsx-one-expression-per-line": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

@@ -13,28 +13,27 @@ interface HomeViewProps {
 
 interface HomeViewState {}
 
+// eslint-disable-next-line react/prefer-stateless-function
 class HomeView extends Component<HomeViewProps, HomeViewState> {
     render(): JSX.Element {
+        const { instanceId, steamNews, onFeedRefresh } = this.props;
+
         return (
-            <React.Fragment>
-                <HomeViewFeed
-                    steamNews={this.props.steamNews}
-                    onRefresh={this.props.onFeedRefresh}
-                />
+            <>
+                <HomeViewFeed steamNews={steamNews} onRefresh={onFeedRefresh} />
                 <footer id="homeview__footer">
                     <button
+                        type="button"
                         id="homeview__footer-play-btn"
                         className="green-btn"
                         onClick={() =>
-                            kerbolAPI.gameManager.runInstance(
-                                this.props.instanceId
-                            )
+                            kerbolAPI.gameManager.runInstance(instanceId)
                         }
                     >
                         Play
                     </button>
                 </footer>
-            </React.Fragment>
+            </>
         );
     }
 }

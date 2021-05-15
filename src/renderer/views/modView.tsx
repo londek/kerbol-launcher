@@ -8,6 +8,7 @@ interface ModsViewProps {
 
 interface ModsViewState {}
 
+// eslint-disable-next-line react/prefer-stateless-function
 class ModsView extends Component<ModsViewProps, ModsViewState> {
     constructor(props: ModsViewProps) {
         super(props);

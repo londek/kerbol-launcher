@@ -15,7 +15,7 @@
         "package": "yarn build && electron-builder build --publish never",
         "package:dev": "yarn build && electron-builder build --dir --publish never -c.asar=false",
         "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir src",
-        "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
+        "lint": "cross-env NODE_ENV=development eslint . --cache --ext .js,.jsx,.ts,.tsx",
         "postinstall": "node -r @babel/register .erb/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.babel.js && opencollective-postinstall && yarn-deduplicate yarn.lock"
     },
     "license": "GPL-3.0-only",
@@ -137,7 +137,9 @@
         "electron-react-devtools": "^0.5.3",
         "electron-rebuild": "^2.3.2",
         "eslint": "^7.5.0",
+        "eslint-config-airbnb": "^18.2.1",
         "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-react": "^7.23.2",
         "eslint-plugin-react-hooks": "^4.0.8",

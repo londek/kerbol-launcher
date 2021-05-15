@@ -12,7 +12,23 @@ interface SidebarProps {
 }
 
 class Sidebar extends Component<SidebarProps> {
+    formatInstancesList = (): IInstanceItem[] => {
+        const { instances, selectedInstance } = this.props;
+
+        if (Object.keys(instances).length === 0) return [];
+
+        return Object.entries(instances).map(
+            ([key, { label }]): IInstanceItem => ({
+                label,
+                instanceId: key,
+                active: key === selectedInstance,
+            })
+        );
+    };
+
     render(): JSX.Element {
+        const { onInstanceSelect, onAddInstanceModal } = this.props;
+
         return (
             <div id="sidebar">
                 <div id="title-container">
@@ -25,31 +41,20 @@ class Sidebar extends Component<SidebarProps> {
 
                 <InstancesList
                     instances={this.formatInstancesList()}
-                    onSelect={this.props.onInstanceSelect}
+                    onSelect={onInstanceSelect}
                 />
 
                 <button
+                    type="button"
                     id="add-instance-btn"
                     className="green-btn"
-                    onClick={this.props.onAddInstanceModal}
+                    onClick={onAddInstanceModal}
                 >
                     ADD INSTANCE
                 </button>
             </div>
         );
     }
-
-    formatInstancesList = (): IInstanceItem[] => {
-        if (Object.keys(this.props.instances).length === 0) return [];
-
-        return Object.entries(this.props.instances).map(
-            ([key, { label }]): IInstanceItem => ({
-                label,
-                instanceId: key,
-                active: key === this.props.selectedInstance,
-            })
-        );
-    };
 }
 
 export default Sidebar;
