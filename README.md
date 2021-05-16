@@ -20,7 +20,7 @@ Early June - First mod management implementations
 Late June - Add some basic animations  
 Early July - Alpha release  
 Early July - Create CI environment  
-Mid-Late July - Beta release  
+Early August - Beta release  
 Later - We will see  
 
 ## Contributing
