@@ -16,11 +16,11 @@
 I needed something, what could manage multiple game versions, make modpacks and look good - so I came up with this.
 
 ## Roadmap
-Early June - First mod management implementations  
-Mid June - Add some basic animations  
-Early July - Alpha release  
-Early July - Create CI environment  
-Early August - Beta release  
+Mid June - First mod management implementations  
+Late June - Add some basic animations  
+Mid July - Alpha release  
+Mid July - Create CI environment  
+Mid/Late August - Beta release  
 Later - We will see  
 
 ## Contributing
