@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/david/Londek/kerbol-launcher?style=for-the-badge" alt="Dependencies state"/>
     <img src="https://img.shields.io/codeclimate/maintainability-percentage/Londek/kerbol-launcher?logo=code-climate&style=for-the-badge" alt="Code Climate maintainability" />
     <br />
-    <img src="https://img.shields.io/badge/-Under%20active%20development-brightgreen?style=for-the-badge" alt="Under active development"/>
+    <img src="https://img.shields.io/badge/-Inactive%20development-red?style=for-the-badge" alt="Inactive development"/>
     <img src="https://img.shields.io/badge/-windows%20support%20only-blue?logo=windows&style=for-the-badge" alt="Windows support only"/>
 </p>
 
@@ -16,6 +16,7 @@
 I needed something, what could manage multiple game versions, make modpacks and look good - so I came up with this.
 
 ## Roadmap
+CANCELED
 Mid June - First mod management implementations  
 Late June - Add some basic animations  
 Mid July - Alpha release  
